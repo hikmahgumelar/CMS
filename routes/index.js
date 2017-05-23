@@ -1,12 +1,12 @@
 var express = require('express')
-, router = express.Router()
-, auth = require('../libs/auth');
+, router = express.Router();
+
 
 
 /**
  * GET: Redirect Homepage to login page.
  * */
-router.get('/', auth.IsAuthenticated, function(req, res, next){
+router.get('/',function (req, res, next){
     res.render('index.ejs',
     {
         user: req.user

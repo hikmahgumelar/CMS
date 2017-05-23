@@ -31,21 +31,23 @@ app.use(session({
 mongo.init();
 
 // Passport setup
-passport.init(app);
+//passport.init(app);
 
 // Set up routing
-var routes = require('./routes/index')
-    , product = require('./routes/product')
+var routes = require('./routes/routes')
+  /*  , product = require('./routes/product')
+    , admin = require('./routes/admin/admin')
     , register = require('./routes/admin/register')
     , login = require('./routes/admin/login')
     , logout = require('./routes/admin/logout');
-
+*/
 // Routes
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
-app.use('/register', register);
-app.use('/login', login);
-app.use('/logout', logout);
+//app.use('/admin', admin);
+//app.use('/register', register);
+//app.use('/login', login);
+//app.use('/logout', logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
