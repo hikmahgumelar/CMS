@@ -1,9 +1,97 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css" >
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title>Acacom</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="cc/css/materialize.min.css"/>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src='cc/js/materialize.min.js'></script>
+  </head>
+  <body>
+    <script>
+    $(document).ready(function(){
+        $('.slider').slider();
+      });
 
-<div class="container">
+    </script>
+<!--navbar-->
+    <nav>
+      <div class="nav-wrapper">
+         <a href="#" class="brand-logo left"><img class="responsive-img" id="logo" src=""></a>
+         <ul id="nav-mobile" class="left hide-on-med-and-down">
+           <li>Home</li>
+           <li>About</li>
+           <li>Product</li>
+          </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b>0812974888800</b></div>
+              <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b>D0133D0A</b></div></li>
+
+              <li><a href="/login">Masuk</a></li>
+
+         </ul>
+       </div>
+    </nav>
+<!--end navbar-->
+<!-- Page Layout here -->
+    <div class="row">
+
+      <div class="col s3">
+        <!-- Grey navigation panel -->
+        <div class="collection">
+          <a href="#!" class="collection-item">Product</a>
+          <a href="#!" class="collection-item">Pabx</a>
+          <a href="#!" class="collection-item">CCTV</a>
+          <a href="#!" class="collection-item">Computing</a>
+          <a href="#!" class="collection-item">Product</a>
+          <a href="#!" class="collection-item">Pabx</a>
+          <a href="#!" class="collection-item">CCTV</a>
+          <a href="#!" class="collection-item">Computing</a>
+          <a href="#!" class="collection-item">Product</a>
+          <a href="#!" class="collection-item">Pabx</a>
+          <a href="#!" class="collection-item">CCTV</a>
+          <a href="#!" class="collection-item">Computing</a>
+        </div>
+        <div class="card  darken-1">
+          <div class="card-content black-text">
+            <span class="card-title">Hubungi Kami</span>
+            <p>Jangan sungkan untuk menghubungi kami.
+            kami siap membantu anda memenuhi kebutuhan
+            perusahaan anda dalam hal teknologi komunikasi</p>
+            <div class="chip">
+            <img src="cc/images/wa.png" alt="Contact Person">
+            <b>0812974888800</b>
+            </div>
+            <div class="chip">
+            <img src="cc/images/bbm.png" alt="Contact Person">
+            <b>D0133D0A</b>
+            </div>
+          </div>
+      </div>
+        <!-- End Grey navigation panel -->
+      </div>
+<div class="row">
+      <div class="col s9">
+        <!-- Teal page content  -->
+        <!-- gambar slide-->
+        <div class="slider">
+        <ul class="slides">
+      <li>
+        <img src="cc/images/slider/bg1.jpg"> <!-- random image -->
+
+      </li>
+      <li>
+        <img src="cc/images/slider/bg2.jpg"> <!-- random image -->
+
+      </li>
+      <li>
+        <img src="cc/images/slider/bg3.jpg"> <!-- random image -->
+
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
+<!--end slider-->

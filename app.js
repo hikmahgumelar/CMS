@@ -35,16 +35,14 @@ passport.init(app);
 
 // Set up routing
 var routes = require('./routes/index')
-    , todos = require('./routes/todos')
     , product = require('./routes/product')
-    , register = require('./routes/register')
-    , login = require('./routes/login')
-    , logout = require('./routes/logout');
+    , register = require('./routes/admin/register')
+    , login = require('./routes/admin/login')
+    , logout = require('./routes/admin/logout');
 
 // Routes
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
-app.use('/todos', todos);
 app.use('/register', register);
 app.use('/login', login);
 app.use('/logout', logout);

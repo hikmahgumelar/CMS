@@ -6,7 +6,7 @@ var express = require('express')
  * GET login
   */
 router.get('/', function(req, res, next) {
-    res.render('login.ejs');
+    res.render('admin/login.ejs');
 });
 
 /**
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
  */
 router.post('/', function(req, res, next) {
     passport.authenticate('local-login', {
-        successRedirect: '/',
+        successRedirect: '/admin',
         failureRedirect: '/login',
         failureFlash : true
     })(req, res, next)
