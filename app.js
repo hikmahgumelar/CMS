@@ -31,7 +31,7 @@ app.use(session({
 mongo.init();
 
 // Passport setup
-//passport.init(app);
+passport.init(app);
 
 // Set up routing
 var routes = require('./routes/routes')
@@ -68,7 +68,7 @@ if (app.get('env') === 'development') {
             error: err
         });
     });
-}
+
 
 // production error handler
 // no stacktraces leaked to user
@@ -81,3 +81,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+};

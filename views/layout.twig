@@ -20,21 +20,27 @@
       <div class="nav-wrapper">
          <a href="#" class="brand-logo left"><img class="responsive-img" id="logo" src=""></a>
          <ul id="nav-mobile" class="left hide-on-med-and-down">
-           <li>
-             <a href="/">Home</a>
-           </li>
-           <li>
-             <a href="/about">About</a>
-           </li>
-           <li>
-             <a href="/product">Product</a>
-           </li>
+           {% for link in navLinks %}
+              {% set linkClass = '' %}
+              {% if link.key == section %}
+                {% set linkClass = ' class="active"' %}
+              {% endif %}
+              <li{{ linkClass | striptags }}>
+                <a href="{{ link.href }}">{{ link.label }}</a>
+              </li>
+            {% endfor %}
           </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b>0812974888800</b></div>
               <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b>D0133D0A</b></div></li>
-            <li><a href="/login">Masuk</a></li>
-
+              {% if user is defined %}
+              {% if user.canAccessKeystone %}
+                <li><a href="/keystone">Kontrol Panel</a></li>
+              {% endif %}
+              <li><a href="/keystone/signout">Keluar</a></li>
+            {% else %}
+              <li><a href="/keystone/signin">Masuk</a></li>
+            {% endif %}
          </ul>
        </div>
     </nav>
@@ -92,9 +98,48 @@
       </li>
       <li>
         <img src="cc/images/slider/bg3.jpg"> <!-- random image -->
-
+        
       </li>
     </ul>
   </div>
 </div>
 <!--end slider-->
+        {% block content %}{% endblock %}
+
+        <!-- End Teal page content  -->
+      </div>
+      </div>
+
+    <!--footer-->
+    <footer class="page-footer">
+              <div class="container">
+                <div class="row">
+                  <div class="col s12 m5">
+                    <h5 class="white-text">Cahaya Communication</h5>
+                    <b><p class="grey-text text-lighten-4">Alamat
+                      E-mail: sunarto.sn@gmail.com
+                      Phone Simpati: +62 0812974888800
+                      jl raya duri kosambi no 40 cengkareng jakarta barat</p></b>
+                  </div>
+                  <div class="col s12 m5">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                      <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+                      <li><a class="grey-text text-lighten-3" href="/about">About</a></li>
+                      <li><a class="grey-text text-lighten-3" href="/contact">Contact</a></li>
+                      <li><a class="grey-text text-lighten-3" href="/product">Product</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-copyright">
+                <div class="container">
+                © 2017 Copyright Cahaya Communication
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+              </div>
+            </footer>
+    <!--end footer-->
+
+  </body>
+</html>

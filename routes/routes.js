@@ -4,7 +4,7 @@ var express = require('express')
 , auth = require('../libs/auth');
 
 router.get('/',function (req, res){
-    res.render('index.ejs');
+    res.render('template/index.ejs');
 /*    {
         user: req.user
     });
@@ -14,7 +14,7 @@ router.get('/',function (req, res){
 /**
  * GET login
   */
-router.get('/admin',auth.IsAuthenticated, function(req, res, next) {
+router.get('/admin', function(req, res, next) {
     res.render('admin/admin.ejs');
 });
 /**
@@ -35,8 +35,16 @@ router.post('/login', function(req, res, next) {
     })(req, res, next)
 });
 
+/*
+logout
+*/
+router.get('/logout',
+    function(req, res, next){
+        req.logout();
+        res.redirect('/');
+});
 
 
-console.log('index loaded');
+console.log('semua module terload');
 
 module.exports = router;
