@@ -1,7 +1,8 @@
 var express = require('express')
 , router = express.Router()
 , passport = require('passport')
-, auth = require('../libs/auth');
+, auth = require('../libs/auth')
+, Product = require('../models/Product');
 
 router.get('/',function (req, res){
     res.render('template/index.ejs');
@@ -10,7 +11,9 @@ router.get('/',function (req, res){
     });
 */
 });
-
+router.get('/register',function (req, res){
+    res.render('admin/register.ejs');
+});
 /**
  * GET login
   */
@@ -43,6 +46,61 @@ router.get('/logout',
         req.logout();
         res.redirect('/');
 });
+
+router.post('/register',
+    function(req, res, next) {
+        passport.authenticate('local-register', {
+            successRedirect: '/',
+            failureRedirect: '/register',
+            failureFlash : true,
+            badRequestMessage: 'All fields are required.'
+        })(req, res, next);
+    });
+
+//ambil halaman product
+router.get('/tambahdata',auth.IsAuthenticated, function(req,res,next){
+  Product.find(function(err, products) {
+   if (err)
+     console.log('ada error');
+res.render('admin/tambahproduct.ejs',{ data: products });
+ });
+
+});
+
+//tambah product
+router.post('/tambah',auth.IsAuthenticated, function(req,res,next){
+  var newProduct = new Product({
+      name: req.body.name,
+      harga: req.body.harga,
+      deskripsi: req.body.deskripsi,
+      detail: req.body.detail,
+      tanggal: Date.now()
+  });
+newProduct.save(function (err){
+  if (err) {
+    console.log("tidak dapat di simpan");
+  }
+   console.log('product berhasil di tambah');
+   res.redirect('/tambahdata');
+});
+});
+/*
+//hapus product
+router.get('/hapus/:id',auth.IsAuthenticated, function(req,res,next){
+Product.remove(function(err){
+  if (err) throw err;
+  console.log("data berhasil di hapus");
+  res.redirect('/tambahdata');
+});
+});
+*/
+router.delete('/tambah/:id', function(req, res, next) {
+  Product.remove(req.params.id, function (err) {
+    if (err) throw err;
+    res.redirect('/tambahdata');
+  });
+});
+
 
 
 console.log('semua module terload');

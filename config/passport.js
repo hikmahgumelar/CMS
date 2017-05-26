@@ -108,7 +108,7 @@ module.exports = {
                                return done(err);
                            }
                            // already exists
-                           if (user) {
+                           if (user) {local-re
                                return done(null, false,
                                    req.flash('error', 'User Already Exists'));
                            } else {

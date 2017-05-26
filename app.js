@@ -35,9 +35,10 @@ passport.init(app);
 
 // Set up routing
 var routes = require('./routes/routes')
+, register = require('./routes/admin/register');
   /*  , product = require('./routes/product')
     , admin = require('./routes/admin/admin')
-    , register = require('./routes/admin/register')
+
     , login = require('./routes/admin/login')
     , logout = require('./routes/admin/logout');
 */
