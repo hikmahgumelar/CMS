@@ -2,6 +2,9 @@ var express = require('express')
 , router = express.Router()
 , passport = require('passport')
 , auth = require('../libs/auth')
+, fs = require('fs')
+, multer = require('multer')
+, upload = multer({dest : './uploads/'})
 , Product = require('../models/Product');
 
 router.get('/',function (req, res){
@@ -68,20 +71,22 @@ res.render('admin/tambahproduct.ejs',{ data: products });
 });
 
 //tambah product
-router.post('/tambah',auth.IsAuthenticated, function(req,res,next){
+router.post('/tambah',upload.single('gambar'),auth.IsAuthenticated, function(req,res,next){
   var newProduct = new Product({
       name: req.body.name,
       harga: req.body.harga,
       deskripsi: req.body.deskripsi,
       detail: req.body.detail,
-      tanggal: Date.now()
+      tanggal: Date.now(),
+      gambar: req.file.path
   });
 newProduct.save(function (err){
   if (err) {
     console.log("tidak dapat di simpan");
-  }
+  }else{
    console.log('product berhasil di tambah');
    res.redirect('/tambahdata');
+}
 });
 });
 /*
@@ -105,7 +110,9 @@ router.delete('/tambah/:id', function(req, res) {
 });
 
 */
-router.get('/hapus/:id', function(req, res){
+
+//remove data by id
+router.get('/:id', function(req, res){
 Product.findByIdAndRemove(req.params.id,function(err, posts){
 	res.redirect('/tambahdata');
 	});

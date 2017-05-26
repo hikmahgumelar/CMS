@@ -7,11 +7,12 @@ var express = require('express')
     , favicon = require('serve-favicon')
     , logger = require('morgan')
     , passport = require('./config/passport.js')
-    , mongo = require('./config/mongo.js');
-
+    , mongo = require('./config/mongo.js')
+    , multer = require('multer');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -26,6 +27,7 @@ app.use(session({
     resave: true,
     saveUninitialized: false
 }));
+// setup untuk gambar
 
 // Mongo setup
 mongo.init();
@@ -44,6 +46,9 @@ var routes = require('./routes/routes')
 */
 // Routes
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
+
+
 app.use('/', routes);
 
 //app.use('/admin', admin);

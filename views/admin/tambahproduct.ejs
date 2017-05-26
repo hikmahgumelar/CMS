@@ -1,5 +1,5 @@
 <% include adminHead%>
-<form method="post" action="/tambah">
+<form method="post" action="/tambah" enctype="multipart/form-data">
 
     <div class="row">
         <div class="col col-sm-4 col-md-2 col-lg-2"><label for="firstName">Nama Produk:</label></div>
@@ -18,12 +18,12 @@
         <div class="col col-sm-8 col-md-14 col-lg-14"><input type="text" name="detail"></div>
     </div>
     <div class="row">
-        <div class="col col-sm-4 col-md-2 col-lg-2"><label for="password">Action</label></div>
-        <div class="col col-sm-8 col-md-14 col-lg-14"><input type="text" name="detail"></div>
+        <div class="col col-sm-4 col-md-2 col-lg-2"><label for="gambar">Gambar Produk:</label></div>
+        <div class="col col-sm-8 col-md-14 col-lg-14" ><input type="file" name="gambar"></div>
     </div>
 
     <div>
-        <input type="submit" value="Tambah Produk" class="btn btn-default">
+      <input type="submit" value="Tambah Produk" class="btn btn-default">
     </div>
 </form>
 <div>
@@ -35,7 +35,9 @@
               <th>Deskripsi Produk</th>
               <th>Detail Produk</th>
               <th>Tanggal Input</th>
-              <th>Action</th>
+              <th>Gambar</th>
+
+              <th>Action</t>
           </tr>
         </thead>
         <% for(var i=0; i<data.length; i++) {%>
@@ -46,7 +48,9 @@
             <td><%= data[i].deskripsi %></td>
             <td><%= data[i].detail %></td>
             <td><%= data[i].tanggal %></td>
-            <td><a href="/hapus/<%=data[i].id%>">hapus</a></td>
+            <td><%= data[i].gambar %></td>
+            <img src="<%= data[i].gambar %>" />
+            <td><a href="/<%=data[i].id%>">hapus</a></td>
           </tr>
           <% } %>
         </tbody>
