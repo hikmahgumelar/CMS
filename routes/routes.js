@@ -4,8 +4,19 @@ var express = require('express')
 , auth = require('../libs/auth')
 , fs = require('fs')
 , multer = require('multer')
-, upload = multer({dest : './uploads/'})
+//, upload = multer({dest : './uploads/' + 'file.fieldname'+'.png'})
 , Product = require('../models/Product');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+
+var upload = multer({ storage: storage }).single('gambar');
 
 router.get('/',function (req, res){
     res.render('template/index.ejs');
@@ -61,7 +72,7 @@ router.post('/register',
     });
 
 //ambil halaman product
-router.get('/tambahdata',auth.IsAuthenticated, function(req,res,next){
+router.get('/tambahdata', function(req,res,next){
   Product.find(function(err, products) {
    if (err)
      console.log('ada error');
@@ -70,16 +81,25 @@ res.render('admin/tambahproduct.ejs',{ data: products });
 
 });
 
+
 //tambah product
-router.post('/tambah',upload.single('gambar'),auth.IsAuthenticated, function(req,res,next){
+router.post('/tambah', function(req,res,next){
+  upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+  
+
   var newProduct = new Product({
       name: req.body.name,
       harga: req.body.harga,
       deskripsi: req.body.deskripsi,
       detail: req.body.detail,
       tanggal: Date.now(),
-      gambar: req.file.path
+      gambar: req.file.originalname
+
   });
+
 newProduct.save(function (err){
   if (err) {
     console.log("tidak dapat di simpan");
@@ -87,6 +107,7 @@ newProduct.save(function (err){
    console.log('product berhasil di tambah');
    res.redirect('/tambahdata');
 }
+});
 });
 });
 /*

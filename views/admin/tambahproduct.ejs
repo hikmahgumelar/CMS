@@ -49,7 +49,9 @@
             <td><%= data[i].detail %></td>
             <td><%= data[i].tanggal %></td>
             <td><%= data[i].gambar %></td>
-            <img src="<%= data[i].gambar %>" />
+            <td>
+              <img src="/<%=data[i].gambar%>"/>
+            </td>
             <td><a href="/<%=data[i].id%>">hapus</a></td>
           </tr>
           <% } %>
