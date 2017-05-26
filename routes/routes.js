@@ -93,15 +93,23 @@ Product.remove(function(err){
   res.redirect('/tambahdata');
 });
 });
-*/
-router.delete('/tambah/:id', function(req, res, next) {
-  Product.remove(req.params.id, function (err) {
-    if (err) throw err;
-    res.redirect('/tambahdata');
-  });
+
+router.delete('/tambah/:id', function(req, res) {
+  Product.removeById({_id :req.params.id}, function (err, result) {
+    if (!err) {
+              return res.json(result);
+          } else {
+              console.log(err);
+              return res.send(err); // 500 error
+          }});
 });
 
-
+*/
+router.get('/hapus/:id', function(req, res){
+Product.findByIdAndRemove(req.params.id,function(err, posts){
+	res.redirect('/tambahdata');
+	});
+});
 
 console.log('semua module terload');
 

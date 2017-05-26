@@ -45,6 +45,7 @@ var routes = require('./routes/routes')
 // Routes
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
+
 //app.use('/admin', admin);
 //app.use('/register', register);
 //app.use('/login', login);

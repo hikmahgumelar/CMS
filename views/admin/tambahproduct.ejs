@@ -46,7 +46,7 @@
             <td><%= data[i].deskripsi %></td>
             <td><%= data[i].detail %></td>
             <td><%= data[i].tanggal %></td>
-            <td><a href="/<%= data[i].id %>">hapus</a></td>
+            <td><a href="/hapus/<%=data[i].id%>">hapus</a></td>
           </tr>
           <% } %>
         </tbody>
