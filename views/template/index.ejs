@@ -1,3 +1,10 @@
 <% include head %>
-<h1>Test</h1>
+<div>
+<% for (var i=0;i<data.length;i++) {%>
+<hr />
+<h3><%=data[i].name%></h3>
+<hr />
+<img class="responsive-img" src="<%=data[i].gambar %>">
+<%}%>
+</div>
 <% include foot %>

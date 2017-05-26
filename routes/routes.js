@@ -19,11 +19,15 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('gambar');
 
 router.get('/',function (req, res){
-    res.render('template/index.ejs');
+  Product.find(function(err, products) {
+   if (err)
+     console.log('ada error');
+    res.render('template/index.ejs',{data : products});
 /*    {
         user: req.user
-    });
 */
+    });
+
 });
 router.get('/register',function (req, res){
     res.render('admin/register.ejs');
@@ -72,7 +76,7 @@ router.post('/register',
     });
 
 //ambil halaman product
-router.get('/tambahdata', function(req,res,next){
+router.get('/tambahdata',auth.IsAuthenticated,function(req,res,next){
   Product.find(function(err, products) {
    if (err)
      console.log('ada error');
@@ -84,11 +88,11 @@ res.render('admin/tambahproduct.ejs',{ data: products });
 
 //tambah product
 router.post('/tambah', function(req,res,next){
+//upload file
   upload(req,res,function(err) {
         if(err) {
             return res.end("Error uploading file.");
         }
-  
 
   var newProduct = new Product({
       name: req.body.name,

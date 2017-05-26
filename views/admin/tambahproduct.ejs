@@ -30,12 +30,13 @@
   <table>
         <thead>
           <tr>
+              <th>Gambar</th>
               <th>Name Produk</th>
               <th>Harga Produk</th>
               <th>Deskripsi Produk</th>
               <th>Detail Produk</th>
               <th>Tanggal Input</th>
-              <th>Gambar</th>
+
 
               <th>Action</t>
           </tr>
@@ -43,15 +44,14 @@
         <% for(var i=0; i<data.length; i++) {%>
         <tbody>
           <tr>
+            <td>
+              <img class="responsive-img" src="/<%=data[i].gambar%>"/>
+            </td>
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>
             <td><%= data[i].deskripsi %></td>
             <td><%= data[i].detail %></td>
             <td><%= data[i].tanggal %></td>
-            <td><%= data[i].gambar %></td>
-            <td>
-              <img src="/<%=data[i].gambar%>"/>
-            </td>
             <td><a href="/<%=data[i].id%>">hapus</a></td>
           </tr>
           <% } %>
