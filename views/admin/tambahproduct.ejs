@@ -19,15 +19,15 @@
     </div>
     <div class="row">
         <div class="col col-sm-4 col-md-2 col-lg-2"><label for="gambar">Gambar Produk:</label></div>
-        <div class="col col-sm-8 col-md-14 col-lg-14" ><input type="file" name="gambar"></div>
+        <div class="col col-sm-8 col-md-14 col-lg-14" ><input type="file" name="gambar" class="btn btn-default"></div>
     </div>
 
     <div>
-      <input type="submit" value="Tambah Produk" class="btn btn-default">
+      <input type="submit" value="Tambah Produk" class="btn btn-default red">
     </div>
 </form>
 <div>
-  <table>
+  <table class="bordered">
         <thead>
           <tr>
               <th>Gambar</th>
@@ -45,14 +45,16 @@
         <tbody>
           <tr>
             <td>
-              <img class="responsive-img" src="/<%=data[i].gambar%>"/>
+              <img  src="/<%=data[i].gambar%>" alt="" class="circle responsive-img"/>
             </td>
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>
             <td><%= data[i].deskripsi %></td>
             <td><%= data[i].detail %></td>
             <td><%= data[i].tanggal %></td>
-            <td><a href="/<%=data[i].id%>">hapus</a></td>
+            <td><a href="/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
+            <td><a href="/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
+
           </tr>
           <% } %>
         </tbody>
