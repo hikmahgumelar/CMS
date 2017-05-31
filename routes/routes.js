@@ -18,16 +18,26 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('gambar');
 
-router.get('/',function (req, res){
-  Product.find(function(err, products) {
+/*router.get('/',function (req, res){
+ Product.find(function(err, products) {
    if (err)
      console.log('ada error');
     res.render('template/index.ejs',{data : products});
 /*    {
         user: req.user
-*/
+
     });
 
+});
+*/
+router.get('/',function (req, res){
+  Product.find(function(err, products){
+
+    if (err)
+     console.log('ada error');
+    res.render('template/index.ejs',{data : products});
+
+});
 });
 router.get('/register',function (req, res){
     res.render('admin/register.ejs');
@@ -141,6 +151,36 @@ router.get('/:id', function(req, res){
 Product.findByIdAndRemove(req.params.id,function(err, posts){
 	res.redirect('/tambahdata');
 	});
+});
+//tampilkan halaman kontak
+router.get('/kontak',auth.IsAuthenticated,function(req,res,next){
+  Kontak.find(function(err, kontak) {
+   if (err)
+     console.log('ada error');
+res.render('admin/tambahkontak.ejs',{ data: kontak });
+});
+});
+
+//add kontak
+router.post('/kontak/add', function(req, res, next){
+
+  var newKontak = new Kontak({
+    telponrumah : req.body.tlprmh,
+    telpongsm   : req.body.tlpgsm,
+    email       : req.body.email,
+    bbm         : req.body.bbm,
+    wa          : req.body.wa
+
+  });
+  newKontak.save(function (err){
+  if (err) {
+    console.log('tidak dapat simpan kontak');
+  }else{
+    console.log('kontak berhasil di simpan');
+    res.redirect('/kontak');
+
+  };
+});
 });
 
 console.log('semua module terload');

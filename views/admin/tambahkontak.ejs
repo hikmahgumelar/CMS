@@ -1,4 +1,3 @@
-<% include adminHead%>
 <form method="post" action="/tambah" enctype="multipart/form-data">
 
     <div class="row">
@@ -38,33 +37,28 @@
   <table class="bordered">
         <thead>
           <tr>
-              <th>Gambar</th>
-              <th>Name Produk</th>
-              <th>Harga Produk</th>
-              <th>Deskripsi Produk</th>
-              <th>Detail Produk</th>
-              <th>Tanggal Input</th>
-
-
+              
+              <th>Nomor Telpon Rumah</th>
+              <th>Nomor Telpon GSM</th>
+              <th>Alamar Email</th>
+              <th>Pin BBM</th>
+              <th>WA</th>
               <th>Action</t>
           </tr>
         </thead>
-        <% for(var i=0; i<data.length; i++) {%>
         <tbody>
           <tr>
             <td>
-              <img  src="/<%=data[i].gambar%>" alt="" class="circle responsive-img"/>
             </td>
-            <td><%= data[i].name %></td>
-            <td><%= data[i].harga %></td>
-            <td><%= data[i].deskripsi %></td>
-            <td><%= data[i].detail %></td>
-            <td><%= data[i].tanggal %></td>
+            <td><%= data[i].telponrumah %></td>
+            <td><%= data[i].telpongsm %></td>
+            <td><%= data[i].email %></td>
+            <td><%= data[i].bbm %></td>
+            <td><%= data[i].wa %></td>
             <td><a href="/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
             <td><a href="/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
 
           </tr>
-          <% } %>
         </tbody>
       </table>
 
