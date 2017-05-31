@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var kontakSchema = new mongoose.model({
+var KontakSchema = new mongoose.Schema({
     telponrumah : String,
     telpongsm   : String,
     email       : String,
@@ -10,4 +10,4 @@ var kontakSchema = new mongoose.model({
 
 });
 
-module.exports = mongoose.model('Kontak', kontakSchema);
+module.exports = mongoose.model('Kontak', KontakSchema);

@@ -51,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use('/', routes);
 
+
 //app.use('/admin', admin);
 //app.use('/register', register);
 //app.use('/login', login);

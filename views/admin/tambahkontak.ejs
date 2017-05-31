@@ -1,43 +1,46 @@
-<form method="post" action="/tambah" enctype="multipart/form-data">
+<% include adminHead%>
+<form method="post" action="/kontak">
 
     <div class="row">
       <div class="input-field col s12">
-          <input  type="text" name="name">
-          <label for="email">Nama Produk</label>
+          <input  type="text" name="tlprmh">
+          <label for="email">Telpone rumah</label>
         </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-          <input  type="text" name="harga">
-          <label for="email">Harga Produk</label>
+          <input  type="text" name="tlpgsm">
+          <label for="email">Telpone GSM</label>
         </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-          <input  type="text" name="deskripsi">
-          <label for="email">Deskripsi Produk</label>
+          <input  type="text" name="email">
+          <label for="email">Alamat Email</label>
         </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-          <input  type="text" name="detail">
-          <label for="email">Detail Produk</label>
+          <input  type="text" name="bbm">
+          <label for="email">PIN BBM</label>
         </div>
     </div>
     <div class="row">
-        <div class="col col-sm-4 col-md-2 col-lg-2"><label for="gambar">Gambar Produk:</label></div>
-        <div class="col col-sm-8 col-md-14 col-lg-14" ><input type="file" name="gambar" class="btn btn-default"></div>
+      <div class="input-field col s12">
+          <input  type="text" name="wa">
+          <label for="email">Nomor WA</label  >
+        </div>
     </div>
 
     <div>
-      <input type="submit" value="Tambah Produk" class="btn btn-default red">
+      <input type="submit" value="Tambah kontak" class="btn btn-default red">
     </div>
 </form>
 <div>
   <table class="bordered">
         <thead>
           <tr>
-              
+
               <th>Nomor Telpon Rumah</th>
               <th>Nomor Telpon GSM</th>
               <th>Alamar Email</th>
@@ -48,17 +51,12 @@
         </thead>
         <tbody>
           <tr>
-            <td>
-            </td>
-            <td><%= data[i].telponrumah %></td>
-            <td><%= data[i].telpongsm %></td>
-            <td><%= data[i].email %></td>
-            <td><%= data[i].bbm %></td>
-            <td><%= data[i].wa %></td>
-            <td><a href="/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
-            <td><a href="/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
-
-          </tr>
+              <td><%= data[0].telponrumah %></td>
+              <td><%= data[0].telpongsm %></td>
+              <td><%= data[0].email %></td>
+              <td><%= data[0].bbm %></td>
+              <td><%= data[0].wa %></td>
+            </tr>
         </tbody>
       </table>
 
