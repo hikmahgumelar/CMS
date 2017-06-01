@@ -14,10 +14,11 @@
         </div>
     </div>
     <div class="row">
-      <div class="input-field col s12">
-          <input  type="text" name="deskripsi">
-          <label for="email">Deskripsi Produk</label>
-        </div>
+      <select class="input-field col s12">
+      <option value="" disabled selected>Pilih sesuai kondisi barang</option>
+      <option value="1">Baru</option>
+      <option value="2">Bekas</option>
+      </select>
     </div>
     <div class="row">
       <div class="input-field col s12">
@@ -44,8 +45,6 @@
               <th>Deskripsi Produk</th>
               <th>Detail Produk</th>
               <th>Tanggal Input</th>
-
-
               <th>Action</t>
           </tr>
         </thead>
@@ -53,7 +52,7 @@
         <tbody>
           <tr>
             <td>
-              <img  src="/<%=data[i].gambar%>" alt="" class="circle responsive-img"/>
+              <img  src="/<%=data[i].gambar%>" alt="" style="width:50px;height:50px;" class="responsive-img 20px"/>
             </td>
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>

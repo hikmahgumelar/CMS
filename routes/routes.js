@@ -83,7 +83,7 @@ router.post('/register',
 //ambil halaman product
 router.get('/tambahdata',auth.IsAuthenticated,function(req,res,next){
 var q = Product.find({})
-  q.sort('create-on').limit(2).exec(function(err, products){
+  q.sort('create-on').limit(8).exec(function(err, products){
    if (err)
      console.log('ada error');
 res.render('admin/tambahproduct.ejs',{ data: products });
