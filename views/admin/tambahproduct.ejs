@@ -1,29 +1,32 @@
-<% include adminHead%>
+<% include adminHead %>
+
+<script> $(document).ready(function(){
+$('select').material_select();});</script>
 <form method="post" action="/tambah" enctype="multipart/form-data">
 
     <div class="row">
       <div class="input-field col s12">
-          <input  type="text" name="name">
-          <label for="email">Nama Produk</label>
+          <input  type="text" name="name" maxlength="20">
+          <label>Nama Produk</label>
         </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-          <input  type="text" name="harga">
-          <label for="email">Harga Produk</label>
+          <input  type="text" name="harga" maxlength="15">
+          <label>Harga Produk</label>
         </div>
     </div>
     <div class="row">
-      <select class="input-field col s12">
+      <select class="input-field col s4">
       <option value="" disabled selected>Pilih sesuai kondisi barang</option>
-      <option value="1">Baru</option>
-      <option value="2">Bekas</option>
+      <option value="Baru">Baru</option>
+      <option value="Bekas">Bekas</option>
       </select>
     </div>
     <div class="row">
       <div class="input-field col s12">
-          <input  type="text" name="detail">
-          <label for="email">Detail Produk</label>
+          <input type="text" name="detail" maxlength="100">
+          <label>Detail Produk</label>
         </div>
     </div>
     <div class="row">

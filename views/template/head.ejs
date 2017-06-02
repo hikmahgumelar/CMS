@@ -36,8 +36,8 @@
            </li>
           </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b>0812974888800</b></div>
-              <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b>D0133D0A</b></div></li>
+              <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b><%=nomor[0].telpongsm%></b></div>
+                <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b><%=nomor[0].bbm%></b></div></li>
             <li><a href="/login">Masuk</a></li>
 
          </ul>
@@ -65,11 +65,11 @@
           perusahaan anda dalam hal teknologi komunikasi</p>
           <div class="chip">
           <img src="cc/images/wa.png" alt="Contact Person">
-          <b>0812974888800</b>
+          <b><%=nomor[0].telpongsm%></b>
           </div>
           <div class="chip">
           <img src="cc/images/bbm.png" alt="Contact Person">
-          <b>D0133D0A</b>
+          <b><%=nomor[0].bbm%></b>
           </div>
         </div>
       </div>
@@ -78,7 +78,9 @@
 <div class="row">
       <div class="col s9">
         <!-- Teal page content  -->
+
         <!-- gambar slide-->
+        <div class="containner">
         <div class="slider">
         <ul class="slides">
       <li>

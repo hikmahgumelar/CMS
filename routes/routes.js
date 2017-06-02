@@ -21,14 +21,16 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('gambar');
 
 router.get('/',function (req, res){
+  Kontak.find(function(err, kontaks){
   Product.find(function(err, products){
 
     if (err)
      console.log('ada error');
-    res.render('template/index.ejs',{data : products});
+    res.render('template/index.ejs',{data : products, nomor : kontaks});
 
 });
 });
+});  
 router.get('/register',function (req, res){
     res.render('admin/register.ejs');
 });
