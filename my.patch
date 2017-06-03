@@ -1,0 +1,155 @@
+commit 1f231ef54def2023419bce835eaf9208e1a6114f
+Author: hikmahgumelar <hikmahgumelar@gmail.com>
+Date:   Fri Jun 2 18:32:33 2017 +0700
+
+    add kontak by database
+
+diff --git a/routes/routes.js b/routes/routes.js
+index 5c9603b..5fb7c9f 100644
+--- a/routes/routes.js
++++ b/routes/routes.js
+@@ -21,14 +21,16 @@ var storage = multer.diskStorage({
+ var upload = multer({ storage: storage }).single('gambar');
+ 
+ router.get('/',function (req, res){
++  Kontak.find(function(err, kontaks){
+   Product.find(function(err, products){
+ 
+     if (err)
+      console.log('ada error');
+-    res.render('template/index.ejs',{data : products});
++    res.render('template/index.ejs',{data : products, nomor : kontaks});
+ 
+ });
+ });
++});  
+ router.get('/register',function (req, res){
+     res.render('admin/register.ejs');
+ });
+diff --git a/uploads/Screenshot from 2017-04-10 16-10-20.png b/uploads/Screenshot from 2017-04-10 16-10-20.png
+new file mode 100644
+index 0000000..145521b
+Binary files /dev/null and b/uploads/Screenshot from 2017-04-10 16-10-20.png differ
+diff --git a/uploads/Screenshot from 2017-06-01 21-26-56.png b/uploads/Screenshot from 2017-06-01 21-26-56.png
+new file mode 100644
+index 0000000..def69d8
+Binary files /dev/null and b/uploads/Screenshot from 2017-06-01 21-26-56.png differ
+diff --git a/uploads/Screenshot from videoplayback.mp4.png b/uploads/Screenshot from videoplayback.mp4.png
+new file mode 100644
+index 0000000..0407a92
+Binary files /dev/null and b/uploads/Screenshot from videoplayback.mp4.png differ
+diff --git a/uploads/apple_mac_os_x_mavericks-wallpaper-1600x1200.jpg b/uploads/apple_mac_os_x_mavericks-wallpaper-1600x1200.jpg
+new file mode 100644
+index 0000000..0b9b644
+Binary files /dev/null and b/uploads/apple_mac_os_x_mavericks-wallpaper-1600x1200.jpg differ
+diff --git a/views/admin/tambahproduct.ejs b/views/admin/tambahproduct.ejs
+index 9bad85b..e35a2d9 100644
+--- a/views/admin/tambahproduct.ejs
++++ b/views/admin/tambahproduct.ejs
+@@ -1,29 +1,32 @@
+-<% include adminHead%>
++<% include adminHead %>
++
++<script> $(document).ready(function(){
++$('select').material_select();});</script>
+ <form method="post" action="/tambah" enctype="multipart/form-data">
+ 
+     <div class="row">
+       <div class="input-field col s12">
+-          <input  type="text" name="name">
+-          <label for="email">Nama Produk</label>
++          <input  type="text" name="name" maxlength="20">
++          <label>Nama Produk</label>
+         </div>
+     </div>
+     <div class="row">
+       <div class="input-field col s12">
+-          <input  type="text" name="harga">
+-          <label for="email">Harga Produk</label>
++          <input  type="text" name="harga" maxlength="15">
++          <label>Harga Produk</label>
+         </div>
+     </div>
+     <div class="row">
+-      <select class="input-field col s12">
++      <select class="input-field col s4">
+       <option value="" disabled selected>Pilih sesuai kondisi barang</option>
+-      <option value="1">Baru</option>
+-      <option value="2">Bekas</option>
++      <option value="Baru">Baru</option>
++      <option value="Bekas">Bekas</option>
+       </select>
+     </div>
+     <div class="row">
+       <div class="input-field col s12">
+-          <input  type="text" name="detail">
+-          <label for="email">Detail Produk</label>
++          <input type="text" name="detail" maxlength="100">
++          <label>Detail Produk</label>
+         </div>
+     </div>
+     <div class="row">
+diff --git a/views/template/foot.ejs b/views/template/foot.ejs
+index 3b5bbb2..ef318d7 100644
+--- a/views/template/foot.ejs
++++ b/views/template/foot.ejs
+@@ -1,6 +1,7 @@
+ <!-- End Teal page content  -->
+ </div>
+ </div>
++</div>
+ 
+ <!--footer-->
+ <footer class="page-footer">
+diff --git a/views/template/head.ejs b/views/template/head.ejs
+index cdeb239..62c414d 100644
+--- a/views/template/head.ejs
++++ b/views/template/head.ejs
+@@ -36,8 +36,8 @@
+            </li>
+           </ul>
+             <ul id="nav-mobile" class="right hide-on-med-and-down">
+-              <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b>0812974888800</b></div>
+-              <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b>D0133D0A</b></div></li>
++              <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b><%=nomor[0].telpongsm%></b></div>
++                <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b><%=nomor[0].bbm%></b></div></li>
+             <li><a href="/login">Masuk</a></li>
+ 
+          </ul>
+@@ -65,11 +65,11 @@
+           perusahaan anda dalam hal teknologi komunikasi</p>
+           <div class="chip">
+           <img src="cc/images/wa.png" alt="Contact Person">
+-          <b>0812974888800</b>
++          <b><%=nomor[0].telpongsm%></b>
+           </div>
+           <div class="chip">
+           <img src="cc/images/bbm.png" alt="Contact Person">
+-          <b>D0133D0A</b>
++          <b><%=nomor[0].bbm%></b>
+           </div>
+         </div>
+       </div>
+@@ -78,7 +78,9 @@
+ <div class="row">
+       <div class="col s9">
+         <!-- Teal page content  -->
++
+         <!-- gambar slide-->
++        <div class="containner">
+         <div class="slider">
+         <ul class="slides">
+       <li>
+diff --git a/views/template/index.ejs b/views/template/index.ejs
+index b18967c..044bc20 100644
+--- a/views/template/index.ejs
++++ b/views/template/index.ejs
+@@ -2,7 +2,7 @@
+ <% for (var i=0;i<data.length;i++) {%>
+         <div class="col s4">
+           <div class="card">
+-            <div class="card-content">
++            <div class="card-content z-depth-z-3">
+               <span class="card-title"><%=data[i].name%></span>
+               <img class="responsive-img" src="/<%=data[i].gambar%>">
+               <p><%=data[i].detail%></p>

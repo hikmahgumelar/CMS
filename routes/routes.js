@@ -4,9 +4,9 @@ var express = require('express')
 , auth = require('../libs/auth')
 , fs = require('fs')
 , multer = require('multer')
-//, upload = multer({dest : './uploads/' + 'file.fieldname'+'.png'})
 , Product = require('../models/Product')
-, Kontak = require('../models/Kontak');
+, Kontak = require('../models/Kontak')
+, User = require('../models/User');
 
 
 var storage = multer.diskStorage({
@@ -19,7 +19,7 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage }).single('gambar');
-
+//index page
 router.get('/',function (req, res){
   Kontak.find(function(err, kontaks){
   Product.find(function(err, products){
@@ -30,27 +30,35 @@ router.get('/',function (req, res){
 
 });
 });
-});  
+});
 router.get('/register',function (req, res){
-    res.render('admin/register.ejs');
+    res.render('admin/daftaruser.ejs');
 });
 /**
  * GET login
   */
 router.get('/admin', function(req, res, next) {
-    res.render('admin/admin.ejs');
+Kontak.find(function(err, kontaks) {
+  if (err)
+console.log('ada errot');
+  res.render('admin/admin.ejs',{ nomor : kontaks });
+});
 });
 /**
  * GET login
   */
 router.get('/login', function(req, res, next) {
-    res.render('admin/login.ejs');
+Kontak.find(function(err, kontaks) {
+   if (err)
+     console.log('ada error');
+res.render('admin/login.ejs',{ nomor : kontaks });
+});
 });
 
 //ambil halaman user
 router.get('/user',auth.IsAuthenticated,function(req,res,next){
 res.render('admin/tambahkontak.ejs',{ data: 'products' });
- });
+});
 
 /**
  * POST login
@@ -75,12 +83,22 @@ router.get('/logout',
 router.post('/register',
     function(req, res, next) {
         passport.authenticate('local-register', {
-            successRedirect: '/',
-            failureRedirect: '/register',
+            successRedirect: '/daftaruser',
+            failureRedirect: '/daftaruser',
             failureFlash : true,
             badRequestMessage: 'All fields are required.'
         })(req, res, next);
     });
+//Daftar User
+router.get('/daftaruser',auth.IsAuthenticated, function(req,res){
+Kontak.find(function(err, kontaks) {
+  User.find(function(err, users) {
+   if (err)
+     console.log('ada error');
+res.render('admin/daftarusers.ejs',{ data: users, nomor : kontaks });
+});
+});
+});
 
 //ambil halaman product
 router.get('/tambahdata',auth.IsAuthenticated,function(req,res,next){
