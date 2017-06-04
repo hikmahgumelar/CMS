@@ -22,7 +22,7 @@ var upload = multer({ storage: storage }).single('gambar');
 //index page
 router.get('/',function (req, res){
   Kontak.find(function(err, kontaks){
-  Product.find(function(err, products){
+Product.find({}).sort('create-on').limit(8).exec(function(err, products){
 
     if (err)
      console.log('ada error');
@@ -40,7 +40,7 @@ router.get('/register',function (req, res){
 router.get('/admin', function(req, res, next) {
 Kontak.find(function(err, kontaks) {
   if (err)
-console.log('ada errot');
+console.log('ada error');
   res.render('admin/admin.ejs',{ nomor : kontaks });
 });
 });
@@ -57,9 +57,12 @@ res.render('admin/login.ejs',{ nomor : kontaks });
 
 //ambil halaman user
 router.get('/user',auth.IsAuthenticated,function(req,res,next){
-res.render('admin/tambahkontak.ejs',{ data: 'products' });
+Kontak.find(function(err, kontaks) {
+   if (err)
+     console.log('ada error');
+res.render('admin/tambahkontak.ejs',{ data: 'products', nomor : kontaks });
 });
-
+});
 /**
  * POST login
  */
@@ -92,7 +95,7 @@ router.post('/register',
 //Daftar User
 router.get('/daftaruser',auth.IsAuthenticated, function(req,res){
 Kontak.find(function(err, kontaks) {
-  User.find(function(err, users) {
+User.find(function(err, users) {
    if (err)
      console.log('ada error');
 res.render('admin/daftarusers.ejs',{ data: users, nomor : kontaks });
@@ -102,14 +105,14 @@ res.render('admin/daftarusers.ejs',{ data: users, nomor : kontaks });
 
 //ambil halaman product
 router.get('/tambahdata',auth.IsAuthenticated,function(req,res,next){
-var q = Product.find({})
-  q.sort('create-on').limit(8).exec(function(err, products){
-   if (err)
-     console.log('ada error');
-res.render('admin/tambahproduct.ejs',{ data: products });
- });
+Product.find({}).sort('create-on').limit(8).exec(function(err, products){
+Kontak.find(function(err, kontaks) {
+  if (err)
+ console.log('ada error');
+res.render('admin/tambahproduct.ejs',{ data: products, nomor : kontaks });
 });
-
+});
+});
 //tambah product
 router.post('/tambah', function(req,res,next){
 //upload file
@@ -144,7 +147,7 @@ router.get('/tambahkontak',auth.IsAuthenticated,function(req,res,next){
   Kontak.find(function(err, kontak) {
    if (err)
      console.log('ada error');
-res.render('admin/tambahkontak.ejs',{ data: kontak });
+res.render('admin/tambahkontak.ejs',{ data: kontak, nomor : kontak });
 });
 });
 
