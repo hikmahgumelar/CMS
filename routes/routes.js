@@ -168,12 +168,20 @@ newKontak.save(function (err){
 }
 });
 });
-//remove data by id
+//remove product by id
 router.get('/:id', auth.IsAuthenticated,function(req, res){
 Product.findByIdAndRemove(req.params.id,function(err, posts){
 	res.redirect('/tambahdata');
 	});
 });
+
+//remove user by id
+router.get('/users/:id', auth.IsAuthenticated,function(req, res){
+Kontak.findByIdAndRemove(req.params.id,function(err, kontaks){
+	res.redirect('/tambahkontak');
+	});
+});
+
 
 console.log('semua module terload');
 
