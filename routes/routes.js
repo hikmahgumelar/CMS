@@ -19,15 +19,15 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage }).single('gambar');
+var upload = multer({ storage: storage }).single('gambar');
 //index page
 router.get('/',function (req, res){
-  Kontak.find(function(err, kontaks){
+Kontak.find(function(err, kontaks){
 Product.find({}).sort('create-on').limit(8).exec(function(err, products){
 
     if (err)
      console.log('ada error');
     res.render('template/index.ejs',{data : products, nomor : kontaks});
-
 });
 });
 });
@@ -180,8 +180,8 @@ Product.findByIdAndRemove(req.params.id,function(err, posts){
 
 //remove user by id
 router.get('/users/:id', auth.IsAuthenticated,function(req, res){
-Kontak.findByIdAndRemove(req.params.id,function(err, kontaks){
-	res.redirect('/tambahkontak');
+User.findByIdAndRemove(req.params.id,function(err, kontaks){
+	res.redirect('/daftaruser');
 	});
 });
 
