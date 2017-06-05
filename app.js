@@ -34,9 +34,12 @@ mongo.init();
 
 // Passport setup
 passport.init(app);
-
+//setup passport ejs if login
+app.use(function (req, res, next){
+res.locals.login = req.isAuthenticated();
+next();
+});
 //kontak.init(app);
-
 // Set up routing
 var routes = require('./routes/routes')
 , register = require('./routes/admin/register');

@@ -19,6 +19,14 @@
       });
 
     </script>
+    <ul id="dropdown1" class="dropdown-content">
+              
+              <li></li>
+              <li><a href="/">home</a></li>
+              <li><a href="/daftaruser">Detail</a></li>
+              <li class="divider"></li>
+              <li><a href="/logout">Keluar</a></li>
+    </ul>
 <!--navbar-->
     <nav>
       <div class="nav-wrapper">
@@ -32,16 +40,19 @@
              <a href="/" >home</a>
            </li>
           </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b><%=nomor[0].telpongsm%></b></div>
-                <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b><%=nomor[0].bbm%></b></div></li>
-            
-              <li><a>Selamat Datang <%= user.firstName %></a></li>
 
+              <% if (login) { %>
+               <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%=user.firstName%><i class="material-icons right">arrow_drop_down</i></a></li>
+                
+              <% } else { %>
+               <ul id="nav-mobile" class="right hide-on-med-and-down">
+               <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b><%=nomor[0].telpongsm%></b></div>
+               <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b><%=nomor[0].bbm%><b></div></li>
+               <li><a href="/login">Masuk</a></li>
+             <% } %>
 
-              <li><a href="/logout">Keluar</a></li>
-
-         </ul>
+        </ul>
        </div>
     </nav>
 <!--end navbar-->

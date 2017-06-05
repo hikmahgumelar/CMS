@@ -36,7 +36,7 @@ router.get('/register',function (req, res){
 /**
  * GET login
   */
-router.get('/admin', function(req, res, next) {
+router.get('/admin',auth.IsAuthenticated,function(req, res, next) {
 Product.find(function(err,products){
 Kontak.find(function(err, kontaks) {
   if (err)
@@ -49,7 +49,7 @@ console.log('ada error');
 /**
  * GET login
   */
-router.get('/login', function(req, res, next) {
+router.get('/login',function(req, res, next) {
 Kontak.find(function(err, kontaks) {
    if (err)
      console.log('ada error');
