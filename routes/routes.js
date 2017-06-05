@@ -62,7 +62,7 @@ router.get('/user',auth.IsAuthenticated,function(req,res,next){
 Kontak.find(function(err, kontaks) {
    if (err)
      console.log('ada error');
-res.render('admin/tambahkontak.ejs',{ data: 'products', nomor : kontaks });
+res.render('admin/tambahkontak.ejs',{ data: 'products', nomor : kontaks , user : req.user});
 });
 });
 /**
@@ -100,7 +100,7 @@ Kontak.find(function(err, kontaks) {
 User.find(function(err, users) {
    if (err)
      console.log('ada error');
-res.render('admin/daftarusers.ejs',{ data: users, nomor : kontaks });
+res.render('admin/daftarusers.ejs',{ data: users, nomor : kontaks , user : req.user});
 });
 });
 });
@@ -111,7 +111,7 @@ Product.find({}).sort('create-on').limit(8).exec(function(err, products){
 Kontak.find(function(err, kontaks) {
   if (err)
  console.log('ada error');
-res.render('admin/tambahproduct.ejs',{ data: products, nomor : kontaks });
+res.render('admin/tambahproduct.ejs',{ data: products, nomor : kontaks , user : req.user});
 });
 });
 });
@@ -149,7 +149,7 @@ router.get('/tambahkontak',auth.IsAuthenticated,function(req,res,next){
   Kontak.find(function(err, kontak) {
    if (err)
      console.log('ada error');
-res.render('admin/tambahkontak.ejs',{ data: kontak, nomor : kontak });
+res.render('admin/tambahkontak.ejs',{ data: kontak, nomor : kontak , user : req.user});
 });
 });
 
