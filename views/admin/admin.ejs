@@ -1,5 +1,39 @@
 <% include adminHead %>
 <div>
-<h4>gagal membuat user</h4>
+<h5>Selamat Datang <%= user.firstName %> <%= user.lastName %> </h5>
 </div>
+<div>
+  <table class="bordered">
+        <thead>
+          <tr>
+              <th>Gambar</th>
+              <th>Name Produk</th>
+              <th>Harga Produk</th>
+              <th>Deskripsi Produk</th>
+              <th>Detail Produk</th>
+              <th>Tanggal Input</th>
+              <th>Action</t>
+          </tr>
+        </thead>
+        <% for(var i=0; i<data.length; i++) {%>
+        <tbody>
+          <tr>
+            <td>
+              <img  src="/<%=data[i].gambar%>" alt="" style="width:50px;height:50px;" class="responsive-img 20px"/>
+            </td>
+            <td><%= data[i].name %></td>
+            <td><%= data[i].harga %></td>
+            <td><%= data[i].deskripsi %></td>
+            <td><%= data[i].detail %></td>
+            <td><%= data[i].tanggal %></td>
+            <td><a href="/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
+            <td><a href="/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
+
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+</div>
+
 <% include adminFoot %>

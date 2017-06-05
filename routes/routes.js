@@ -19,7 +19,6 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage }).single('gambar');
-var upload = multer({ storage: storage }).single('gambar');
 //index page
 router.get('/',function (req, res){
 Kontak.find(function(err, kontaks){
@@ -38,12 +37,15 @@ router.get('/register',function (req, res){
  * GET login
   */
 router.get('/admin', function(req, res, next) {
+Product.find(function(err,products){
 Kontak.find(function(err, kontaks) {
   if (err)
 console.log('ada error');
-  res.render('admin/admin.ejs',{ nomor : kontaks });
+  res.render('admin/admin.ejs',{ nomor : kontaks, user : req.user, data : products});
 });
 });
+});
+
 /**
  * GET login
   */

@@ -35,6 +35,8 @@ mongo.init();
 // Passport setup
 passport.init(app);
 
+//kontak.init(app);
+
 // Set up routing
 var routes = require('./routes/routes')
 , register = require('./routes/admin/register');
