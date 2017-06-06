@@ -6,8 +6,8 @@ var express = require('express')
 , multer = require('multer')
 , Product = require('../models/Product')
 , Kontak = require('../models/Kontak')
-, User = require('../models/User');
-
+, User = require('../models/User')
+, paginate = require('express-paginate');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -22,22 +22,38 @@ var upload = multer({ storage: storage }).single('gambar');
 //index page
 router.get('/',function (req, res){
 Kontak.find(function(err, kontaks){
-Product.find({}).sort('create-on').limit(8).exec(function(err, products){
+//Product.find({}).sort('-tanggal').limit(8).exec(function(err, products){
 
+var number = req.param('page');
+Product.paginate({}, { page: number, limit:2 }, function(err, results, pageCount, itemCount){
     if (err)
      console.log('ada error');
-    res.render('template/index.ejs',{data : products, nomor : kontaks});
+ 
+    console.log(results.pages);
+    //console.log(results);
+    res.render('template/index.ejs',{data : results, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
 });
 });
 });
 router.get('/register',function (req, res){
     res.render('admin/daftaruser.ejs');
 });
+
+router.get('/test', function (req, res){
+Product.paginate({}, { page:1, limit:2}, function(err, result, pageCount, itemCount){
+  if (err){
+    console.log(err);
+  } else {
+
+  }
+});
+});
+
 /**
  * GET login
   */
 router.get('/admin',auth.IsAuthenticated,function(req, res, next) {
-Product.find(function(err,products){
+Product.find({}).sort('-tanggal').limit(8).exec(function(err, products){
 Kontak.find(function(err, kontaks) {
   if (err)
 console.log('ada error');
@@ -107,7 +123,7 @@ res.render('admin/daftarusers.ejs',{ data: users, nomor : kontaks , user : req.u
 
 //ambil halaman product
 router.get('/tambahdata',auth.IsAuthenticated,function(req,res,next){
-Product.find({}).sort('create-on').limit(8).exec(function(err, products){
+Product.find({}).sort('-date').limit(8).exec(function(err, products){
 Kontak.find(function(err, kontaks) {
   if (err)
  console.log('ada error');

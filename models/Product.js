@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+var mongoosePaginate = require('mongoose-paginate');
 var ProductSchema = new mongoose.Schema({
     name: String,
     gambar : String,
@@ -9,5 +9,5 @@ var ProductSchema = new mongoose.Schema({
     tanggal: Date
 
 });
-
+ProductSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Product', ProductSchema);
