@@ -1,12 +1,23 @@
 var mongoose = require('mongoose');
 
 var KontakSchema = new mongoose.Schema({
-    telponrumah : String,
+  info :[{ 
+  telponrumah : String,
     telpongsm   : String,
     email       : String,
     bbm         : String,
     wa          : String
+  }],
+  about : [{
+    judul :String,
+    isi : String,
+    tanggal : Date
+    
+  }],
+  order : [{
+  alamat : String
 
+  }]
 
 });
 

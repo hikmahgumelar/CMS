@@ -25,7 +25,7 @@ Kontak.find(function(err, kontaks){
 //Product.find({}).sort('-tanggal').limit(8).exec(function(err, products){
 
 var number = req.param('page');
-Product.paginate({}, { page: number, limit:2 }, function(err, results, pageCount, itemCount){
+Product.paginate({}, { page: number, limit:8 }, function(err, results, pageCount, itemCount){
     if (err)
      console.log('ada error');
  
@@ -110,6 +110,15 @@ router.post('/register',
             badRequestMessage: 'All fields are required.'
         })(req, res, next);
     });
+//about page
+//
+router.get('/about', function(req, res){
+Kontak.find(function(err, kontaks) {
+if (err)
+  res.render('template/about.ejs', { data: kontaks});
+
+});
+});
 //Daftar User
 router.get('/daftaruser',auth.IsAuthenticated, function(req,res){
 Kontak.find(function(err, kontaks) {
@@ -171,14 +180,15 @@ res.render('admin/tambahkontak.ejs',{ data: kontak, nomor : kontak , user : req.
 
 //add kontak
 router.post('/kontak', function(req,res,next){
-  var newKontak = new Kontak({
+  var newKontak = new Kontak();
+       newKontak.info  = {
       telponrumah: req.body.tlprmh,
       telpongsm: req.body.tlpgsm,
       email: req.body.email,
       bbm: req.body.bbm,
       wa: req.body.wa,
 
-  });
+       };
 
 newKontak.save(function (err){
   if (err) {
@@ -189,6 +199,7 @@ newKontak.save(function (err){
 }
 });
 });
+
 //remove product by id
 router.get('/:id', auth.IsAuthenticated,function(req, res){
 Product.findByIdAndRemove(req.params.id,function(err, posts){
