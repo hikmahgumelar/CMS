@@ -35,6 +35,17 @@ Product.paginate({}, { page: number, limit:8 }, function(err, results, pageCount
 });
 });
 });
+//about page
+router.get('/about', function(req, res){
+Kontak.find(function(err, kontaks) {
+if (err)
+  console.log('ada errot');
+res.render('template/about.ejs', { data: kontaks, nomor: kontaks});
+
+});
+});
+
+//daftar user
 router.get('/register',function (req, res){
     res.render('admin/daftaruser.ejs');
 });
@@ -74,13 +85,13 @@ res.render('admin/login.ejs',{ nomor : kontaks });
 });
 
 //ambil halaman user
-router.get('/user',auth.IsAuthenticated,function(req,res,next){
-Kontak.find(function(err, kontaks) {
-   if (err)
-     console.log('ada error');
-res.render('admin/tambahkontak.ejs',{ data: 'products', nomor : kontaks , user : req.user});
-});
-});
+//router.get('/user',auth.IsAuthenticated,function(req,res,next){
+//Kontak.find(function(err, kontaks) {
+//   if (err)
+//     console.log('ada error');
+//res.render('admin/tambahhalaman.ejs',{ data: 'products', nomor : kontaks , user : req.user});
+//});
+//});
 /**
  * POST login
  */
@@ -112,13 +123,6 @@ router.post('/register',
     });
 //about page
 //
-router.get('/about', function(req, res){
-Kontak.find(function(err, kontaks) {
-if (err)
-  res.render('template/about.ejs', { data: kontaks});
-
-});
-});
 //Daftar User
 router.get('/daftaruser',auth.IsAuthenticated, function(req,res){
 Kontak.find(function(err, kontaks) {
@@ -170,11 +174,11 @@ newProduct.save(function (err){
 
 
 //tampilkan halaman kontak
-router.get('/tambahkontak',auth.IsAuthenticated,function(req,res,next){
+router.get('/tambahhalaman',auth.IsAuthenticated,function(req,res,next){
   Kontak.find(function(err, kontak) {
    if (err)
      console.log('ada error');
-res.render('admin/tambahkontak.ejs',{ data: kontak, nomor : kontak , user : req.user});
+res.render('admin/tambahhalaman.ejs',{ data: kontak, nomor : kontak , user : req.user});
 });
 });
 
@@ -195,7 +199,7 @@ newKontak.save(function (err){
     console.log("tidak dapat di simpan");
   }else{
    console.log('product berhasil di tambah');
-   res.redirect('/tambahkontak');
+   res.redirect('/tambahhalaman');
 }
 });
 });
@@ -208,7 +212,7 @@ Product.findByIdAndRemove(req.params.id,function(err, posts){
 });
 
 //remove user by id
-router.get('/users/:id', auth.IsAuthenticated,function(req, res){
+router.get('/daftaruser/:id', auth.IsAuthenticated,function(req, res){
 User.findByIdAndRemove(req.params.id,function(err, kontaks){
 	res.redirect('/daftaruser');
 	});
