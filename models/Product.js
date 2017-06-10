@@ -4,7 +4,7 @@ var ProductSchema = new mongoose.Schema({
     name: String,
     gambar : String,
     harga: Number,
-    deskripsi: String,
+    status: String,
     detail: String,
     tanggal: Date
 

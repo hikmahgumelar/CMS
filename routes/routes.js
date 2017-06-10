@@ -121,8 +121,6 @@ router.post('/register',
             badRequestMessage: 'All fields are required.'
         })(req, res, next);
     });
-//about page
-//
 //Daftar User
 router.get('/daftaruser',auth.IsAuthenticated, function(req,res){
 Kontak.find(function(err, kontaks) {
@@ -136,7 +134,7 @@ res.render('admin/daftarusers.ejs',{ data: users, nomor : kontaks , user : req.u
 
 //ambil halaman product
 router.get('/tambahdata',auth.IsAuthenticated,function(req,res,next){
-Product.find({}).sort('-date').limit(8).exec(function(err, products){
+Product.find(function(err, products){
 Kontak.find(function(err, kontaks) {
   if (err)
  console.log('ada error');
@@ -144,6 +142,7 @@ res.render('admin/tambahproduct.ejs',{ data: products, nomor : kontaks , user : 
 });
 });
 });
+
 //tambah product
 router.post('/tambah', function(req,res,next){
 //upload file
@@ -155,7 +154,7 @@ router.post('/tambah', function(req,res,next){
   var newProduct = new Product({
       name: req.body.name,
       harga: req.body.harga,
-      deskripsi: req.body.deskripsi,
+      status: req.body.status,
       detail: req.body.detail,
       tanggal: Date.now(),
       gambar: req.file.originalname
@@ -171,8 +170,35 @@ newProduct.save(function (err){
 });
 });
 });
+//edit product
+router.get('/:id',auth.IsAuthenticated,function(req, res, next){
+Product.findById(req.params.id,function(err, products){
+  if(err)
+    console.log("error di cari edit ");
+  res.render('admin/edit-product.ejs',{ data: products, user: req.user});
+});
+});
+//simpann editan product
+router.post('/update/:id',auth.IsAuthenticated,function(req, res){
+  upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
 
+  var newProduct = ({
+      name: req.body.name,
+      harga: req.body.harga,
+      status: req.body.status,
+      detail: req.body.detail,
+      tanggal: Date.now(),
+      gambar: req.file.originalname
 
+  });
+Product.findByIdAndUpdate(req.params.id, newProduct, function (err, products){
+   res.redirect('/tambahdata');
+});
+});
+});
 //tampilkan halaman kontak
 router.get('/tambahhalaman',auth.IsAuthenticated,function(req,res,next){
   Kontak.find(function(err, kontak) {
@@ -183,7 +209,7 @@ res.render('admin/tambahhalaman.ejs',{ data: kontak, nomor : kontak , user : req
 });
 
 //add kontak
-router.post('/kontak', function(req,res,next){
+router.get('/kontak', function(req,res,next){
   var newKontak = new Kontak();
        newKontak.info  = {
       telponrumah: req.body.tlprmh,
@@ -205,7 +231,7 @@ newKontak.save(function (err){
 });
 
 //remove product by id
-router.get('/:id', auth.IsAuthenticated,function(req, res){
+router.get('/hapus/:id', auth.IsAuthenticated,function(req, res){
 Product.findByIdAndRemove(req.params.id,function(err, posts){
 	res.redirect('/tambahdata');
 	});

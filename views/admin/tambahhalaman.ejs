@@ -2,38 +2,31 @@
 <form method="post" action="/kontak">
 
     <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s4">
           <input  type="text" name="tlprmh" maxlength="15">
-          <label for="telponrumah">Telpone rumah</label>
+          <label for="telponrumah">Telpon Rumah : <%= data[0].info[0].telponrumah %></label>
         </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
+    
+      <div class="input-field col s4">
           <input  type="text" name="tlpgsm"  maxlength="15">
           <label for="telpomgsm">Telpone GSM</label>
         </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s4">
           <input  type="email" name="email" maxlength="30">
           <label for="email">Alamat Email</label>
         </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s4">
           <input  type="text" name="bbm" maxlength="10">
           <label for="bbm">PIN BBM</label>
         </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s4">
           <input  type="text" name="wa" maxlength="15">
           <label for="wa">Nomor WA</label  >
         </div>
     </div>
 
     <div>
-      <input type="submit" value="Tambah kontak" class="btn btn-default red">
+      <input type="submit" value="Simpan" class="btn btn-default red">
     </div>
 </form>
 <div>

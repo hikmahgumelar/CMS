@@ -19,7 +19,7 @@ $('select').material_select();});
         </div>
     </div>
     <div class="row">
-      <select class="input-field col s4">
+      <select class="input-field col s4" name="status">
       <option value="" disabled selected>Pilih sesuai kondisi barang</option>
       <option value="Baru">Baru</option>
       <option value="Bekas">Bekas</option>
@@ -64,10 +64,10 @@ $('select').material_select();});
             </td>
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>
-            <td><%= data[i].deskripsi %></td>
+            <td><%= data[i].status %></td>
             <td><%= data[i].detail %></td>
             <td><%= data[i].tanggal %></td>
-            <td><a href="/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
+            <td><a href="/hapus/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
             <td><a href="/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
 
           </tr>
