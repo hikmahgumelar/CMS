@@ -25,7 +25,7 @@ Kontak.find(function(err, kontaks){
 //Product.find({}).sort('-tanggal').limit(8).exec(function(err, products){
 
 var number = req.param('page');
-Product.paginate({}, { page: number, limit:8 }, function(err, results, pageCount, itemCount){
+Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, results, pageCount, itemCount){
     if (err)
      console.log('ada error');
  
@@ -64,7 +64,7 @@ Product.paginate({}, { page:1, limit:2}, function(err, result, pageCount, itemCo
  * GET login
   */
 router.get('/admin',auth.IsAuthenticated,function(req, res, next) {
-Product.find({}).sort('-tanggal').limit(8).exec(function(err, products){
+Product.find(function(err, products){
 Kontak.find(function(err, kontaks) {
   if (err)
 console.log('ada error');
