@@ -191,7 +191,7 @@ router.post('/update/:id',auth.IsAuthenticated,function(req, res){
       status: req.body.status,
       detail: req.body.detail,
       tanggal: Date.now(),
-      gambar: req.file.originalname
+      //gambar: req.body.originalname
 
   });
 Product.findByIdAndUpdate(req.params.id, newProduct, function (err, products){
