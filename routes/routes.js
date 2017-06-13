@@ -29,9 +29,9 @@ Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, resu
     if (err)
      console.log('ada error');
  
-    console.log(results.pages);
     //console.log(results);
     res.render('template/index.ejs',{data : results, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
+    console.log(results);
 });
 });
 });
