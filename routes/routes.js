@@ -22,26 +22,28 @@ var upload = multer({ storage: storage }).single('gambar');
 //index page
 router.get('/',function (req, res){
 Kontak.find(function(err, kontaks){
-//Product.find({}).sort('-tanggal').limit(8).exec(function(err, products){
-
-var number = req.param('page');
-Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, results, pageCount, itemCount){
+Product.find({}, {}, { sort: { '_id' : -1 } } ,function(err, products){
+//var oumber = req.param('page');
+Product.paginate({}, { page: req.param('page'), limit:8, sort:{_id:-1}}, function(err, results, pageCount, itemCount){
     if (err)
      console.log('ada error');
  
     //console.log(results);
-    res.render('template/index.ejs',{data : results, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
+    res.render('template/index.ejs',{data : results, detail: products, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
     console.log(results);
+});
 });
 });
 });
 //about page
 router.get('/about', function(req, res){
 Kontak.find(function(err, kontaks) {
-if (err)
+Product.find({}, {}, { sort: { '_id' : -1 } } ,function(err, products){
+  if (err)
   console.log('ada errot');
-res.render('template/about.ejs', { data: kontaks, nomor: kontaks});
+res.render('template/about.ejs', { data: kontaks, nomor: kontaks, detail: products});
 
+});
 });
 });
 //product page
@@ -55,6 +57,23 @@ Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, resu
     //console.log(results);
     res.render('template/product.ejs',{data : results, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
     console.log(results);
+});
+});
+});
+//Detail product
+router.get('/detail/:id', function(req, res){
+Kontak.find(function(err, kontaks){
+Product.find({}, {}, { sort: { '_id' : -1 } } ,function(err, products){
+Product.findById(req.params.id, function(err, results){
+  //var oumber = req.param('page');
+    if (err)
+     console.log('ada error');
+ 
+    //console.log(results);
+ 
+  res.render('template/detail-product.ejs',{ data: results, detail: products, nomor: kontaks, user: req.user});
+
+});
 });
 });
 });

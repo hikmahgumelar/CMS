@@ -64,10 +64,12 @@
           <a href="/order" class="collection-item">Cara Order</a>
           <a href="/product" class="collection-item">Product</a>
         </div>
-                 <div class="collection">
-          <a href="/" style="background: #ee6e73"class="collection-item vilign center white-text">Info Produk</a>
-          <span class="card-title"><h5 class="center-align">Hotest Produk</h5></span>
-          <p>Jangan sungkan untuk menghubungi kami.</p>
+        <div class="collection">
+          <a href="/" style="background: #ee6e73"class="collection-item vilign center white-text">Produk Terbaru</a>
+          
+        <% for (var i=0;i<3;i++) { %>
+        <p align="justify"><a align="center" href="/detail/<%=detail[i].id%>"><b><%=detail[i].name%></b></a></p>
+        <% } %>
           
         </div>
        <div class="collection">
