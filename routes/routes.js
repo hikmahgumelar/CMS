@@ -44,7 +44,20 @@ res.render('template/about.ejs', { data: kontaks, nomor: kontaks});
 
 });
 });
-
+//product page
+router.get('/product', function(req, res){
+Kontak.find(function(err, kontaks) {
+var number = req.param('page');
+Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, results, pageCount, itemCount){
+    if (err)
+     console.log('ada error');
+ 
+    //console.log(results);
+    res.render('template/product.ejs',{data : results, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
+    console.log(results);
+});
+});
+});
 //daftar user
 router.get('/register',function (req, res){
     res.render('admin/daftaruser.ejs');
@@ -191,8 +204,7 @@ router.post('/update/:id',auth.IsAuthenticated,function(req, res){
       status: req.body.status,
       detail: req.body.detail,
       tanggal: Date.now(),
-      //gambar: req.body.originalname
-
+      
   });
 Product.findByIdAndUpdate(req.params.id, newProduct, function (err, products){
    res.redirect('/tambahdata');
