@@ -117,13 +117,13 @@ res.render('admin/login.ejs',{ nomor : kontaks });
 });
 
 //ambil halaman user
-//router.get('/user',auth.IsAuthenticated,function(req,res,next){
-//Kontak.find(function(err, kontaks) {
-//   if (err)
-//     console.log('ada error');
-//res.render('admin/tambahhalaman.ejs',{ data: 'products', nomor : kontaks , user : req.user});
-//});
-//});
+router.get('/user',auth.IsAuthenticated,function(req,res,next){
+Kontak.find(function(err, kontaks) {
+   if (err)
+     console.log('ada error');
+res.render('admin/tambahhalaman.ejs',{ data: 'products', nomor : kontaks , user : req.user});
+});
+});
 /**
  * POST login
  */
@@ -202,7 +202,7 @@ newProduct.save(function (err){
 });
 });
 });
-//edit product
+/*edit product
 router.get('/:id',auth.IsAuthenticated,function(req, res, next){
 Product.findById(req.params.id,function(err, products){
   if(err)
@@ -210,6 +210,7 @@ Product.findById(req.params.id,function(err, products){
   res.render('admin/edit-product.ejs',{ data: products, user: req.user});
 });
 });
+*/
 //simpann editan product
 router.post('/update/:id',auth.IsAuthenticated,function(req, res){
   upload(req,res,function(err) {
@@ -238,20 +239,18 @@ router.get('/tambahhalaman',auth.IsAuthenticated,function(req,res,next){
 res.render('admin/tambahhalaman.ejs',{ data: kontak, nomor : kontak , user : req.user});
 });
 });
-
 //add kontak
-router.get('/kontak', function(req,res,next){
-  var newKontak = new Kontak();
-       newKontak.info  = {
+router.post('/kontak/5943d106f71ad72a0e7b5a76', function(req,res,next){
+  var newKontak = ({ info:[{
       telponrumah: req.body.tlprmh,
       telpongsm: req.body.tlpgsm,
       email: req.body.email,
       bbm: req.body.bbm,
       wa: req.body.wa,
+        }]
+       });
 
-       };
-
-newKontak.save(function (err){
+Kontak.findByIdAndUpdate("5943d106f71ad72a0e7b5a76",newKontak, function (err){
   if (err) {
     console.log("tidak dapat di simpan");
   }else{

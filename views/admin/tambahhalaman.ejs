@@ -1,5 +1,5 @@
 <% include adminHead %>
-<form method="post" action="/kontak">
+<form method="post" action="/kontak/5943d106f71ad72a0e7b5a76">
 
     <div class="row">
       <div class="input-field col s4">
@@ -9,19 +9,19 @@
     
       <div class="input-field col s4">
           <input  type="text" name="tlpgsm"  maxlength="15">
-          <label for="telpomgsm">Telpone GSM</label>
+          <label for="telpongsm">Telpone GSM : <%= data[0].info[0].telponrumah %></label>
         </div>
       <div class="input-field col s4">
           <input  type="email" name="email" maxlength="30">
-          <label for="email">Alamat Email</label>
+          <label for="email">Alamat Email : <%= data[0].info[0].email %></label>
         </div>
       <div class="input-field col s4">
           <input  type="text" name="bbm" maxlength="10">
-          <label for="bbm">PIN BBM</label>
+          <label for="bbm">PIN BBM : <%= data[0].info[0].bbm %></label>
         </div>
       <div class="input-field col s4">
           <input  type="text" name="wa" maxlength="15">
-          <label for="wa">Nomor WA</label  >
+          <label for="wa">Nomor WA : <%= data[0].info[0].wa %></label  >
         </div>
     </div>
 
