@@ -61,7 +61,7 @@ Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, resu
 });
 });
 //Detail product
-router.get('/detail/:id', function(req, res){
+router.get('/detail-product/:id', function(req, res){
 Kontak.find(function(err, kontaks){
 Product.find({}, {}, { sort: { '_id' : -1 } } ,function(err, products){
 Product.findById(req.params.id, function(err, results){
@@ -202,15 +202,16 @@ newProduct.save(function (err){
 });
 });
 });
+//*
 //edit product
-router.get('/:id',auth.IsAuthenticated,function(req, res, next){
+router.get('/edit-product/:id',auth.IsAuthenticated,function(req, res, next){
 Product.findById(req.params.id,function(err, products){
   if(err)
     console.log("error di cari edit ");
   res.render('admin/edit-product.ejs',{ data: products, user: req.user});
 });
 });
-
+//*/
 //simpann editan product
 router.post('/update/:id',auth.IsAuthenticated,function(req, res){
   upload(req,res,function(err) {
@@ -268,7 +269,7 @@ Product.findByIdAndRemove(req.params.id,function(err, posts){
 });
 
 //remove user by id
-router.get('/daftaruser/:id', auth.IsAuthenticated,function(req, res){
+router.get('/hapususer/:id', auth.IsAuthenticated,function(req, res){
 User.findByIdAndRemove(req.params.id,function(err, kontaks){
 	res.redirect('/daftaruser');
 	});

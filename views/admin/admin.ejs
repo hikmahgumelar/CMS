@@ -9,8 +9,6 @@
               <th>Name Produk</th>
               <th>Harga Produk</th>
               <th>Deskripsi Produk</th>
-              <th>Detail Produk</th>
-              <th>Tanggal Input</th>
               <th>Action</th>
           </tr>
         </thead>
@@ -23,9 +21,7 @@
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>
             <td><%= data[i].status %></td>
-            <td><%= data[i].detail %></td>
-            <td><%= data[i].tanggal %></td>
-            <td><a href="/<%=data[i].id%>" class="btn btn-floating red"><i class="material-icons">mode_edit</i></a></td>
+            <td><a href="/edit-product/<%=data[i].id%>" class="btn btn-floating red"><i class="material-icons">mode_edit</i></a></td>
 
           </tr>
           <% } %>

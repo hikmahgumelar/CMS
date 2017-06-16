@@ -49,8 +49,6 @@ $('select').material_select();});
               <th>Name Produk</th>
               <th>Harga Produk</th>
               <th>Deskripsi Produk</th>
-              <th>Detail Produk</th>
-              <th>Tanggal Input</th>
               <th>Action</t>
           </tr>
         </thead>
@@ -63,10 +61,8 @@ $('select').material_select();});
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>
             <td><%= data[i].status %></td>
-            <td><%- data[i].detail %></td>
-            <td><%= data[i].tanggal %></td>
             <td><a href="/hapus/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
-            <td><a href="/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
+            <td><a href="/edit-product/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
 
           </tr>
           <% } %>
