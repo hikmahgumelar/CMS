@@ -26,19 +26,16 @@ $('select').material_select();});
       </select>
     </div>
     <div class="row">
-      <div class="input-field col s12">
-          <input type="text" name="detail" maxlength="100" value="<%=data.detail%>">
-          <label>Detail Produk</label>
-        </div>
+    <div class="input-field col s12">
+    <img class="responsive-img" style="width:150px;height:150px;" src="<%=data.gambar%>"/>
+    </div>
     </div>
     <div class="row">
-    <!--<div class="file-field input-field">
-    <div class="btn"><span>File Gambar</span>
-    <input type="file" name="gambar"></div>
-    <div class="file-path-wrapper"><input class="file-path validate" type="text"></div>
-    </div> -->
-     <img class="responsive-img" style="width:50px;height:50px;" src="<%=data.gambar%>"/>
-     </div>
+      <div class="input-field col s12">
+          <label>Detail Produk</label>
+          <textarea name="detail"><%-data.detail%></textarea>
+        </div>
+    </div>
 
     <div>
       <input type="submit" value="Simpan Perubahan" class="btn btn-default green">

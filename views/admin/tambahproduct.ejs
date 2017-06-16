@@ -34,7 +34,7 @@ $('select').material_select();});
     </div>
     <div class="row">
     <div class="input-field col s12">
-     <textarea></textarea>
+     <textarea class="detail" ></textarea>
      </div>
     </div>
         <div>
@@ -63,7 +63,7 @@ $('select').material_select();});
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>
             <td><%= data[i].status %></td>
-            <td><%= data[i].detail %></td>
+            <td><%- data[i].detail %></td>
             <td><%= data[i].tanggal %></td>
             <td><a href="/hapus/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
             <td><a href="/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
