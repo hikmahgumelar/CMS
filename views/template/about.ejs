@@ -1,5 +1,8 @@
 <% include head %>
 <div class="content">
-<h5><%=data[0].about[0].judul%></h5>
+<h5 align="center"><%=data[0].about[0].judul%></h5>
+
+<img class="responsive-img" src="/<%=data[0].about[0].gambar%>" style="width:200px;height:150px;" />
+<h5 align="justify"><%-data[0].about[0].isi%></h5>
 </div>
 <% include foot %>

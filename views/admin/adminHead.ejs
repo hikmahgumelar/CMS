@@ -27,6 +27,14 @@
               <li class="divider"></li>
               <li><a href="/logout">Keluar</a></li>
     </ul>
+<ul id="dropdown2" class="dropdown-content">
+              <li><a href="/editkontak">Edit Kontak</a></li>
+              <li><a href="/editabout">Edit Halaman About</a></li>
+              <li><a href="/editorder">Edit Cara Order</a></li>
+    </ul>
+
+
+
 <!--navbar-->
     <nav>
       <div class="nav-wrapper">
@@ -47,8 +55,8 @@
                 
               <% } else { %>
                <ul id="nav-mobile" class="right hide-ddon-med-and-down">
-               <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b></b></div>
-               <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b><b></div></li>
+               <li><div class="chip"><img src="/cc/images/wa.png" alt="Contact Person"><b></b></div>
+               <div class="chip"><img src="/cc/images/bbm.png" alt="Contact Person"><b><b></div></li>
                <li><a href="/login">Masuk</a></li>
              <% } %>
 
@@ -63,9 +71,10 @@
         <!-- Grey navigation panel -->
         <div class="collection">
           <a href="/tambahdata" class="collection-item">Tambah Product</a>
-          <a href="/tambahhalaman" class="collection-item">Halaman</a>
+          <a href="/tambahhalaman" class="collection-item dropdown-button" data-activates="dropdown2">Rubah       <b>></b></a>
           <a href="/daftaruser" class="collection-item">User</a>
           <a href="/" class="collection-item">Home</a>
+          <a href="" class="collection-item"></a>
 
 
         </div>

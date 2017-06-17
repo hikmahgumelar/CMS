@@ -3,13 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Acacom</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link href="/cc/css/googlefont.css" rel="stylesheet">
     <link rel="stylesheet" href="/cc/css/materialize.min.css"/>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/cc/js/jquery.min.js"></script>
 <script src='/cc/js/materialize.min.js'></script>
 <script src='/cc/js/pace.min.js'></script>
+<script src='/cc/js/tinymce/js/tinymce/tinymce.min.js'></script>
+<script src='/cc/js/tinymce/js/tinymce/tinymce.config.js'></script>
 <link rel="stylesheet" href="/cc/css/pace.css" />
-
+ 
   </head>
   <body>
     <script>
@@ -43,8 +45,8 @@
                  <li><a href="/logout">Keluar</a></li>
               <% } else { %>
                <ul id="nav-mobile" class="right hide-on-med-and-down">
-               <li><div class="chip"><img src="cc/images/wa.png" alt="Contact Person"><b><%=nomor[0].info[0].telpongsm%></b></div>
-               <div class="chip"><img src="cc/images/bbm.png" alt="Contact Person"><b><%=nomor[0].info[0].bbm%><b></div></li>
+               <li><div class="chip"><img src="/cc/images/wa.png" alt="Contact Person"><b><%=nomor[0].info[0].telpongsm%></b></div>
+               <div class="chip"><img src="/cc/images/bbm.png" alt="Contact Person"><b><%=nomor[0].info[0].bbm%><b></div></li>
                <li><a href="/login">Masuk</a></li>
              <% } %>
 
@@ -68,7 +70,7 @@
           <a href="/" style="background: #ee6e73"class="collection-item vilign center white-text">Produk Terbaru</a>
           
         <% for (var i=0;i<3;i++) { %>
-        <p align="justify"><a align="center" href="/detail/<%=detail[i].id%>"><b><%=detail[i].name%></b></a></p>
+        <p align="justify"><a align="center" href="/detail-product/<%=detail[i].id%>"><b><%=detail[i].name%></b></a></p>
         <% } %>
           
         </div>
@@ -79,11 +81,11 @@
           kami siap membantu anda memenuhi kebutuhan
           perusahaan anda dalam hal teknologi komunikasi</p>
           <div class="chip">
-          <img src="cc/images/wa.png" alt="Contact Person">
+          <img src="/cc/images/wa.png" alt="Contact Person">
           <b><%=nomor[0].info[0].telpongsm%></b>
           </div>
           <div class="chip">
-          <img src="cc/images/bbm.png" alt="Contact Person">
+          <img src="/cc/images/bbm.png" alt="Contact Person">
           <b><%=nomor[0].info[0].bbm%></b>
           </div>
         </div>
@@ -94,11 +96,11 @@
           kami siap membantu anda memenuhi kebutuhan
           perusahaan anda dalam hal teknologi komunikasi</p>
           <div class="chip">
-          <img src="cc/images/wa.png" alt="Contact Person">
+          <img src="/cc/images/wa.png" alt="Contact Person">
           <b><%=nomor[0].info[0].telpongsm%></b>
           </div>
           <div class="chip">
-          <img src="cc/images/bbm.png" alt="Contact Person">
+          <img src="/cc/images/bbm.png" alt="Contact Person">
           <b><%=nomor[0].info[0].bbm%></b>
           </div>
         </div>
