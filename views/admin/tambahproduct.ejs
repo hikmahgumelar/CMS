@@ -61,7 +61,7 @@ $('select').material_select();});
             <td><%= data[i].name %></td>
             <td><%= data[i].harga %></td>
             <td><%= data[i].status %></td>
-            <td><a href="/hapus/<%=data[i].id%>" onclick="Materialize.toast('Data di hapus', 4000) class="btn btn-floating red">Del</a></td>
+            <td><a href="/hapus/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
             <td><a href="/edit-product/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
 
           </tr>
