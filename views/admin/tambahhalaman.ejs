@@ -1,4 +1,16 @@
 <% include adminHead %>
+
+<div class="row">
+   <div class="col s12">
+   <ul class="tabs">
+   <li class="tab col s3"><a href="#rubahkontak">Rubah Kontak</a></li>
+   <li class="tab col s3"><a href="#rubahaboutpage">Rubah About Page</a></li>
+   <li class="tab col s3"><a href="#rubahorder">Rubah Order Page</a></li>
+   </ul>
+</div>
+<!-- Halaman Rubah Kontak -->
+<div id="rubahkontak" class="col s12">
+
 <form method="post" action="/kontak/5944842483b19c323a1dc8d2">
 
     <div class="row">
@@ -6,7 +18,6 @@
           <input  type="text" name="tlprmh" maxlength="15" value="<%= data[0].info[0].telponrumah %>">
           <label for="telponrumah">Telpon Rumah : </label>
         </div>
-    
       <div class="input-field col s4">
           <input  type="text" name="tlpgsm"  maxlength="15" value="<%= data[0].info[0].telpongsm %>">
           <label for="telpongsm">Telpone GSM :</label>
@@ -39,7 +50,7 @@
               <th>Alamat Email</th>
               <th>Pin BBM</th>
               <th>WA</th>
-          
+
           </tr>
         </thead>
         <tbody>
@@ -54,5 +65,18 @@
       </table>
 
 </div>
+</div>
 
+<!--Halaman rubah about -->
+<div id="rubahaboutpage" class="col s12">
+<h1>Rubah Halaman About</h1>
+
+</div>
+
+<!-- halaman rubah order -->
+<div id="rubahorder" class="col s12">
+<h1>halaman order page</h1>
+</div>
+
+</div>
 <% include adminFoot %>
