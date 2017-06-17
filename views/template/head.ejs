@@ -68,11 +68,11 @@
         </div>
         <div class="collection">
           <a href="/" style="background: #ee6e73"class="collection-item vilign center white-text">Produk Terbaru</a>
-          
+          <div class="container"> 
         <% for (var i=0;i<3;i++) { %>
-        <p align="justify"><a align="center" href="/detail-product/<%=detail[i].id%>"><b><%=detail[i].name%></b></a></p>
+        <p><a href="/detail-product/<%=detail[i].id%>"><b><%=detail[i].name%></b></a></p>
         <% } %>
-          
+          </div>
         </div>
        <div class="collection">
           <a href="/" style="background: #ee6e73"class="collection-item vilign center white-text">Sistem Antar</a>
