@@ -11,11 +11,14 @@ var KontakSchema = new mongoose.Schema({
   about : [{
     judul :String,
     isi : String,
+    gambar : String,
     tanggal : Date
     
   }],
   order : [{
-  alamat : String
+  judul : String,
+  alamat : String,
+  tanggal : Date
 
   }]
 
