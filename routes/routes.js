@@ -241,7 +241,7 @@ res.render('admin/tambahhalaman.ejs',{ data: kontak, nomor : kontak , user : req
 });
 });
 //add kontak
-router.post('/kontak/5943d106f71ad72a0e7b5a76', function(req,res,next){
+router.post('/kontak/5944842483b19c323a1dc8d2', function(req,res,next){
   var newKontak = ({ info:[{
       telponrumah: req.body.tlprmh,
       telpongsm: req.body.tlpgsm,
@@ -251,7 +251,7 @@ router.post('/kontak/5943d106f71ad72a0e7b5a76', function(req,res,next){
         }]
        });
 
-Kontak.findByIdAndUpdate("5943d106f71ad72a0e7b5a76",newKontak, function (err){
+Kontak.findByIdAndUpdate("5944842483b19c323a1dc8d2",newKontak, function (err){
   if (err) {
     console.log("tidak dapat di simpan");
   }else{
