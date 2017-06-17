@@ -48,6 +48,7 @@ res.render('template/about.ejs', { data: kontaks, nomor: kontaks, detail: produc
 });
 //product page
 router.get('/product', function(req, res){
+Product.find({}, {}, { sort: { '_id' : -1 } } ,function(err, products){
 Kontak.find(function(err, kontaks) {
 var number = req.param('page');
 Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, results, pageCount, itemCount){
@@ -55,8 +56,9 @@ Product.paginate({}, { page: number, limit:8, sort:{_id:-1}}, function(err, resu
      console.log('ada error');
  
     //console.log(results);
-    res.render('template/product.ejs',{data : results, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
+    res.render('template/product.ejs',{data : results, detail : products, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
     console.log(results);
+});
 });
 });
 });
@@ -233,11 +235,11 @@ Product.findByIdAndUpdate(req.params.id, newProduct, function (err, products){
 });
 });
 //tampilkan halaman kontak
-router.get('/tambahhalaman',auth.IsAuthenticated,function(req,res,next){
+router.get('/rubahhalaman',auth.IsAuthenticated,function(req,res,next){
   Kontak.find(function(err, kontak) {
    if (err)
      console.log('ada error');
-res.render('admin/tambahhalaman.ejs',{ data: kontak, nomor : kontak , user : req.user});
+res.render('admin/rubahhalaman.ejs',{ data: kontak, nomor : kontak , user : req.user});
 });
 });
 //add kontak
@@ -256,7 +258,7 @@ Kontak.findByIdAndUpdate("5944842483b19c323a1dc8d2",newKontak, function (err){
     console.log("tidak dapat di simpan");
   }else{
    console.log('product berhasil di tambah');
-   res.redirect('/tambahhalaman');
+   res.redirect('/rubahhalaman');
 }
 });
 });
