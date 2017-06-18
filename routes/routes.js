@@ -262,6 +262,31 @@ Kontak.findByIdAndUpdate("5944842483b19c323a1dc8d2",newKontak, function (err){
 }
 });
 });
+//add about
+router.post('/about/5944842483b19c323a1dc8d2', function(req,res,next){
+ upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+
+
+  var newKontak = ({ about:[{
+      judul: req.body.judul,
+      isi: req.body.isi,
+      gambar: req.file.originalname,
+        }]
+       });
+
+Kontak.findByIdAndUpdate("5944842483b19c323a1dc8d2",newKontak, function (err){
+  if (err) {
+    console.log("tidak dapat di simpan");
+  }else{
+   console.log('product berhasil di tambah');
+   res.redirect('/rubahhalaman');
+}
+});
+});
+});
 
 //remove product by id
 router.get('/hapus/:id', auth.IsAuthenticated,function(req, res){

@@ -69,14 +69,42 @@
 
 <!--Halaman rubah about -->
 <div id="rubahaboutpage" class="col s12">
+<div class="row">
+<div class="col s12">
 <h1>Rubah Halaman About</h1>
+<form method="post" action="/about/5944842483b19c323a1dc8d2" enctype="multipart/form-data">
 
+    <div class="row">
+      <div class="input-field col s12">
+          <input  type="text" name="judul" maxlength="20" value="<%=data[0].about[0].judul%>">
+          <label>Judul</label>
+        </div>
+    </div>
+     
+   <div class="row">
+    <div class="file-field input-field col s12">
+    <div class="btn"><span>File Gambar</span>
+    <input type="file" name="gambar"></div>
+    <div class="file-path-wrapper"><input class="file-path validate" type="text"></div>
+   </div>
+   
+    <div class="row">
+    <div class="input-field col s12">
+    <textarea name="isi"><%-data[0].about[0].isi%></textarea>
+     </div>
+    </div>
+      <div>
+      <input type="submit" value="Simpan" class="btn btn-default red">
+    </div>
+</form>
+</div>
 </div>
 
 <!-- halaman rubah order -->
 <div id="rubahorder" class="col s12">
 <h1>halaman order page</h1>
 </div>
-
+</div>
+</div>
 </div>
 <% include adminFoot %>
