@@ -28,7 +28,7 @@ Product.paginate({}, { page: req.param('page'), limit:8, sort:{_id:-1}}, functio
     if (err)
      console.log('ada error');
  
-    //console.log(results);
+    console.log(results);
     res.render('template/index.ejs',{data : results, detail: products, nomor : kontaks, pageCount : pageCount, itemCount : itemCount });
     console.log(results);
 });

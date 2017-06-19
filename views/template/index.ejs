@@ -21,11 +21,11 @@
 <% } %>
 <div class="col s12">
 <ul class="pagination valign center">
-<% if (data.pages=1){ %>
-<% for (var i=1;i<data.pages+1;i++) {%>
-<li class="waves-effect"><a><%=i%></a><a href="/?page=<%=i+1%>"><h6><b>></b></h6></a></li>
+
+<% for (var i=1;i<data.pages+1;i++) { %>
+<li><h6><a href="/?page=<%=i%>"><%=i%></a></h6></li>
 <% } %>
-<% } %>
+
 </ul>
 </div>
-  <% include foot %>
+<% include foot %>
