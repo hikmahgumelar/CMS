@@ -80,12 +80,17 @@
           <label>Judul</label>
         </div>
     </div>
-     
+    
+<div class="row" >
+  <div class="file-field input-field col s12">
+   <input type="image" style="width:150px;height:150px;" src="<%=data[0].about[0].gambar%>"></div>
+</div>
+</div>
+
    <div class="row">
     <div class="file-field input-field col s12">
     <div class="btn"><span>File Gambar</span>
-   <input type="image" src="<%=data[0].about[0].gambar%>"></div>
-   <input type="file" name="gambar" file="<%=data[0].about[0].gambar%>"></div>
+    <input type="file" name="gambar"></div>
     <div class="file-path-wrapper"><input class="file-path validate" type="text"></div>
    </div>
    
@@ -94,8 +99,10 @@
     <textarea name="isi"><%-data[0].about[0].isi%></textarea>
      </div>
     </div>
-      <div>
+      <div class="row">
+      <div class="input-field col s12">
       <input type="submit" value="Simpan" class="btn btn-default red">
+    </div>
     </div>
 </form>
 </div>
