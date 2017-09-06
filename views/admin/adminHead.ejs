@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Acacom</title>
+    <link href="/cc/css/googlefont.css" rel="stylesheet">
+    <link rel="stylesheet" href="/cc/css/materialize.min.css"/>
+<script src="/cc/js/jquery.min.js"></script>
+<script src='/cc/js/materialize.min.js'></script>
+<script src='/cc/js/pace.min.js'></script>
+<script src='/cc/js/tinymce/js/tinymce/tinymce.min.js'></script>
+<script src='/cc/js/tinymce/js/tinymce/tinymce.config.js'></script>
+<link rel="stylesheet" href="/cc/css/pace.css" />
+  </head>
+  <body>
+    <script>
+    $(document).ready(function(){
+        $('.slider').slider();
+      });
+
+    </script>
+    <ul id="dropdown1" class="dropdown-content">
+              
+              <li></li>
+              <li><a href="/">home</a></li>
+              <li><a href="/daftaruser">Detail</a></li>
+              <li class="divider"></li>
+              <li><a href="/logout">Keluar</a></li>
+    </ul>
+<ul id="dropdown2" class="dropdown-content">
+              <li><a href="/editkontak">Edit Kontak</a></li>
+              <li><a href="/editabout">Edit Halaman About</a></li>
+              <li><a href="/editorder">Edit Cara Order</a></li>
+    </ul>
+
+
+
+<!--navbar-->
+    <nav>
+      <div class="nav-wrapper">
+         <a href="/" class="brand-logo left"><img class="responsive-img" id="logo" src=""></a>
+         <ul id="nav-mobile" class="center hide-on-med-and-down">
+           <li><a href="/"></a></li>
+           <li><a href="/"></a></li>
+           <li><a href="/"></a></li>
+           <li><a href="/"></a></li>
+           <li>
+             <a href="/" >home</a>
+           </li>
+          </ul>
+
+              <% if (login) { %>
+               <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%=user.firstName%><i class="material-icons right">arrow_drop_down</i></a></li>
+                
+              <% } else { %>
+               <ul id="nav-mobile" class="right hide-ddon-med-and-down">
+               <li><div class="chip"><img src="/cc/images/wa.png" alt="Contact Person"><b></b></div>
+               <div class="chip"><img src="/cc/images/bbm.png" alt="Contact Person"><b><b></div></li>
+               <li><a href="/login">Masuk</a></li>
+             <% } %>
+
+        </ul>
+       </div>
+    </nav>
+<!--end navbar-->
+<!-- Page Layout here -->
+    <div class="row">
+
+      <div class="col s3">
+        <!-- Grey navigation panel -->
+        <div class="collection">
+          <a href="/tambahdata" class="collection-item">Tambah Product</a>
+          <a href="/daftaruser" class="collection-item">User</a>
+          <a href="/" class="collection-item">Home</a>
+          <a href="/rubahhalaman" class="collection-item">Rubah</a>
+
+
+        </div>
+
+        <!-- End Grey navigation panel -->
+      </div>
+<div class="row">
+      <div class="col s9">
+        <!-- Teal page content  -->

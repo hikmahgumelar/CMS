@@ -1,0 +1,46 @@
+<% include adminHead %>
+<script> 
+$(document).ready(function(){
+$('select').material_select();});
+</script>
+<h4>Rubah Product</h4>
+<form method="post" action="/update/<%=data.id%>" enctype="multipart/form-data">
+
+    <div class="row">
+      <div class="input-field col s12">
+          <input  type="text" name="name" maxlength="20" value="<%=data.name%>">
+          <label>Nama Produk   :</label>
+        </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+          <input  type="text" name="harga" maxlength="15" value="<%=data.harga%>">
+          <label>Harga Produk :</label>
+        </div>
+    </div>
+    <div class="row">
+      <select class="input-field col s4" name="status">
+      <option value="" disabled selected><label disabled>Deskripsi Produk :</label><%=data.status%></option>
+      <option value="Baru">Baru</option>
+      <option value="Bekas">Bekas</option>
+      </select>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+    <img class="responsive-img" style="width:150px;height:150px;" src="/<%=data.gambar%>"/>
+    </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+          <label>Detail Produk</label>
+          <textarea name="detail"><%-data.detail%></textarea>
+        </div>
+    </div>
+
+    <div>
+      <input type="submit" value="Simpan Perubahan" class="btn btn-default green">
+    <a href="/hapus/<%=data.id%>" class="btn btn-default red">Hapus </a>
+    </div>
+</form>
+<% include adminFoot %>
+

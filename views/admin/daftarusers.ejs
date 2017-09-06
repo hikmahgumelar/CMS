@@ -1,0 +1,66 @@
+<% include adminHead %>
+
+<form method="post" action="/register">
+
+      <div class="input-field col s6">
+          <input  type="text" name="firstName" maxlength="20">
+          <label>Nama Depan:</label>
+      </div>
+      <div class="input-field col s6">
+          <input  type="text" name="lastName" maxlength="15">
+          <label>Nama Belakang:</label>
+      </div>
+    <div class="row">
+    <div class="input-field col s6">
+          <input  type="text" name="email" maxlength="40">
+          <label>Alamat Email:</label>
+        </div>
+        </div>
+        <div class="row">
+        <div class="input-field col s6">
+          <input  type="password" name="password" maxlength="15">
+          <label>Password:</label>
+        </div>
+       </div>
+       <div class="row">
+       <div class="input-field col s6">
+          <input  type="password" name="confirm" maxlength="15">
+          <label>Ulangi Password:</label>
+      </div>
+      </div>
+      <div>
+      <input type="submit" value="Daftar" class="btn btn-default">
+    </div>
+</form>
+
+<div>
+  <table class="bordered">
+        <thead>
+          <tr>
+              <th>Nama Depan</th>
+              <th>Nama Belakang</th>
+              <th>Alamat Email</th>
+              <th>Login Email</th>
+              <th>Action</th>
+              <th></th>
+          </tr>
+        </thead>
+        <% for(var i=0; i<data.length; i++) {%>
+        <tbody>
+          <tr>
+            <td><%= data[i].firstName %></td>
+            <td><%= data[i].lastName %></td>
+            <td><%= data[i].email %></td>
+            <td><%= data[i].email %></td>
+            <td><a href="/hapususer/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
+            <td><a href="/detail-user/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
+
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+</div>
+
+
+<% include adminFoot %>

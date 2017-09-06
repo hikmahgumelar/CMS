@@ -1,0 +1,74 @@
+<% include adminHead %>
+
+<script> 
+$(document).ready(function(){
+$('select').material_select();});
+</script>
+<form method="post" action="/tambah" enctype="multipart/form-data">
+
+    <div class="row">
+      <div class="input-field col s12">
+          <input  type="text" name="name" maxlength="20">
+          <label>Nama Produk</label>
+        </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+          <input  type="text" name="harga" maxlength="15">
+          <label>Harga Produk</label>
+        </div>
+    </div>
+    <div class="row">
+      <select class="input-field col s4" name="status">
+      <option value="" disabled selected>Pilih sesuai kondisi barang</option>
+      <option value="Baru">Baru</option>
+      <option value="Bekas">Bekas</option>
+      </select>
+    </div>
+    <div class="row">
+    <div class="file-field input-field col s12">
+    <div class="btn"><span>File Gambar</span>
+    <input type="file" name="gambar"></div>
+    <div class="file-path-wrapper"><input class="file-path validate" type="text"></div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="input-field col s12">
+     <textarea class="detail" ></textarea>
+     </div>
+    </div>
+        <div>
+      <input type="submit" value="Tambah Produk" class="btn btn-default red">
+    </div>
+</form>
+<div>
+  <table class="bordered">
+        <thead>
+          <tr>
+              <th>Gambar</th>
+              <th>Name Produk</th>
+              <th>Harga Produk</th>
+              <th>Deskripsi Produk</th>
+              <th>Action</t>
+          </tr>
+        </thead>
+        <% for(var i=0; i<data.length; i++) {%>
+        <tbody>
+          <tr>
+            <td>
+              <img  src="/<%=data[i].gambar%>" alt="" style="width:50px;height:50px;" class="responsive-img 20px"/>
+            </td>
+            <td><%= data[i].name %></td>
+            <td><%= data[i].harga %></td>
+            <td><%= data[i].status %></td>
+            <td><a href="/hapus/<%=data[i].id%>" class="btn btn-floating red">Del</a></td>
+            <td><a href="/edit-product/<%=data[i].id%>" class="btn btn-floating yellow">Edit</a></td>
+
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+</div>
+
+<% include adminFoot%>

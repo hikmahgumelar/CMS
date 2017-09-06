@@ -1,0 +1,13 @@
+<% include head %>
+<div class="content">
+<h4>Nama Product : <%=data.name%></h4>
+<hr>
+<img class="responsive-img" src="/<%=data.gambar%>" style="width:200px;height:150px;" />
+
+<h5>Kondisi Barang : <%=data.status%></h5>
+<h6>Ulasan : </h6> 
+<div class="col s9">
+<%-data.detail%>
+</div>
+</div>
+<% include foot %>

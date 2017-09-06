@@ -1,0 +1,80 @@
+diff --git a/models/Kontak.js b/models/Kontak.js
+index 6b4f3b0..7df233a 100644
+--- a/models/Kontak.js
++++ b/models/Kontak.js
+@@ -1,12 +1,23 @@
+ var mongoose = require('mongoose');
+ 
+ var KontakSchema = new mongoose.Schema({
+-    telponrumah : String,
++  info :[{ 
++  telponrumah : String,
+     telpongsm   : String,
+     email       : String,
+     bbm         : String,
+     wa          : String
++  }],
++  about : [{
++    judul :String,
++    isi : String,
++    tanggal : Date
++    
++  }],
++  order : [{
++  alamat : String
+ 
++  }]
+ 
+ });
+ 
+diff --git a/routes/routes.js b/routes/routes.js
+index 728982c..9370e44 100644
+--- a/routes/routes.js
++++ b/routes/routes.js
+@@ -171,14 +171,15 @@ res.render('admin/tambahkontak.ejs',{ data: kontak, nomor : kontak , user : req.
+ 
+ //add kontak
+ router.post('/kontak', function(req,res,next){
+-  var newKontak = new Kontak({
++  var newKontak = new Kontak();
++       newKontak.info  = {
+       telponrumah: req.body.tlprmh,
+       telpongsm: req.body.tlpgsm,
+       email: req.body.email,
+       bbm: req.body.bbm,
+       wa: req.body.wa,
+ 
+-  });
++       };
+ 
+ newKontak.save(function (err){
+   if (err) {
+@@ -189,6 +190,7 @@ newKontak.save(function (err){
+ }
+ });
+ });
++
+ //remove product by id
+ router.get('/:id', auth.IsAuthenticated,function(req, res){
+ Product.findByIdAndRemove(req.params.id,function(err, posts){
+diff --git a/views/admin/tambahkontak.ejs b/views/admin/tambahkontak.ejs
+index 532bae6..ae2a502 100644
+--- a/views/admin/tambahkontak.ejs
++++ b/views/admin/tambahkontak.ejs
+@@ -51,11 +51,11 @@
+         </thead>
+         <tbody>
+           <tr>
+-              <td><%= data[0].telponrumah %></td>
+-              <td><%= data[0].telpongsm %></td>
+-              <td><%= data[0].email %></td>
+-              <td><%= data[0].bbm %></td>
+-              <td><%= data[0].wa %></td>
++              <td><%= data[0].info[0].telponrumah %></td>
++              <td><%= data[0].info[0].telpongsm %></td>
++              <td><%= data[0].info[0].email %></td>
++              <td><%= data[0].info[0].bbm %></td>
++              <td><%= data[0].info[0].wa %></td>
+             </tr>
+         </tbody>
+       </table>

@@ -1,0 +1,31 @@
+<% include head %>
+
+<% include slider %>
+
+<% for (var i=0;i<data.docs.length;i++) {%>
+        <div class="col s3">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title"><h6><b><%=data.docs[i].name%></b></h6></span>
+              <div class="card-image">
+              <img  src="/<%=data.docs[i].gambar%>" alt="<%=data.docs[i].name%>" width="250" height="100" >
+            </div>
+          <p>Kondisi barang :<b><%-data.docs[i].status%></b></p>
+            </div>
+            <div class="card-action valign center">
+              <a align="center" href="/detail-product/<%=data.docs[i].id%>">Detail</a>
+              <a align="center" href="#">Order</a>
+            </div>
+          </div>
+        </div>
+<% } %>
+<div class="col s12">
+<ul class="pagination valign center">
+
+<% for (var i=1;i<data.pages+1;i++) { %>
+<li><h6><a href="/?page=<%=i%>"><%=i%></a></h6></li>
+<% } %>
+
+</ul>
+</div>
+<% include foot %>
